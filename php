@@ -322,3 +322,49 @@ if (isset($_POST['submit'])) {
 
 </body>
 </html>
+
+QUESTION 19
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Find Highest and Lowest</title>
+</head>
+<body>
+
+<h2>Enter Numbers (comma-separated):</h2>
+
+<form method="post">
+  <input type="text" name="numbers" placeholder="e.g., 10, 25, 5, 88, 43">
+  <input type="submit" name="submit" value="Find">
+</form>
+
+<?php
+// Define the function
+function findHighLow($array) {
+    $highest = max($array);
+    $lowest = min($array);
+    return array("highest" => $highest, "lowest" => $lowest);
+}
+
+// When form is submitted
+if (isset($_POST['submit'])) {
+    $input = $_POST['numbers'];
+   
+    if (!empty($input)) {
+        // Convert string to array
+        $num_array = array_map('intval', explode(",", $input));
+
+        // Call the function
+        $result = findHighLow($num_array);
+
+        echo "<h3>Results:</h3>";
+        echo "Highest Number: " . $result['highest'] . "<br>";
+        echo "Lowest Number: " . $result['lowest'];
+    } else {
+        echo "<p style='color:red;'>Please enter some numbers.</p>";
+    }
+}
+?>
+
+</body>
+</html>
