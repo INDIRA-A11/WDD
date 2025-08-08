@@ -414,3 +414,40 @@ if (isset($_POST['submit'])) {
 
 </body>
 </html>
+
+QUESTION 21
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leap Year Checker</title>
+</head>
+<body>
+
+<h2>Check if a Year is a Leap Year</h2>
+
+<form method="post">
+  Enter Year: <input type="number" name="year" required>
+  <input type="submit" name="submit" value="Check">
+</form>
+
+<?php
+// Leap year checking function
+function isLeapYear($year) {
+    // Leap year rules
+    return ($year % 4 == 0 && $year % 100 != 0) || ($year % 400 == 0);
+}
+
+// If form is submitted
+if (isset($_POST['submit'])) {
+    $year = intval($_POST['year']);
+
+    if (isLeapYear($year)) {
+        echo "<p><strong>$year</strong> is a <span style='color:green;'>Leap Year.</span></p>";
+    } else {
+        echo "<p><strong>$year</strong> is <span style='color:red;'>Not a Leap Year.</span></p>";
+    }
+}
+?>
+
+</body>
+</html>
