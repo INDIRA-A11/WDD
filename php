@@ -662,3 +662,16 @@ QUESTION 26
 
 </body>
 </html>
+
+QUESTION 27
+<?php
+$a = 10;
+$b = 3;
+
+echo "Addition (a + b): " . ($a + $b) . "<br>";        // 13
+echo "Subtraction (a - b): " . ($a - $b) . "<br>";     // 7
+echo "Multiplication (a * b): " . ($a * $b) . "<br>";  // 30
+echo "Division (a / b): " . ($a / $b) . "<br>";        // 3.333...
+echo "Modulus (a % b): " . ($a % $b) . "<br>";         // 1
+echo "Exponentiation (a ** b): " . ($a ** $b) . "<br>";// 1000
+?>
