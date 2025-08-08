@@ -232,5 +232,51 @@ deal(25, 11, 23, 9);
 ?>
 OUTPUT:
 Drink A - ₹25 for 11 units: ₹2.27 per unit<br>Drink B - ₹23 for 9 units: ₹2.56 per unit<br><br><strong>Choose Drink A. It offers a better deal.</strong>
-
 === Code Execution Successful ===
+
+QUESTION 9
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PHP Variable Output</title>
+</head>
+<body>
+
+  <h2>PHP Output with Variables</h2>
+
+  <?php
+  // Correct variable names
+  $var1 = "this";
+  $that = "that";
+  $the_other = 2.2000000000;
+
+  // Display each variable
+  echo "<p><strong>var1:</strong> $var1</p>";
+  echo "<p><strong>that:</strong> $that</p>";
+  echo "<p><strong>the_other:</strong> $the_other</p>";
+
+  // Display combined output (with undefined variable $not_set)
+  echo "<h3>Combined Output:</h3>";
+  echo "<p>";
+  echo "$var1," . @$not_set . ",$that+$the_other";
+  echo "</p>";
+  ?>
+
+</body>
+</html>
+
+OUTPUT:
+PHP Output with Variables
+var1: $var1
+"; echo "
+that: $that
+
+"; echo "
+the_other: $the_other
+
+"; // Display combined output (with undefined variable $not_set) echo "
+Combined Output:
+"; echo "
+"; echo "$var1," . @$not_set . ",$that+$the_other"; echo "
+
+"; ?>
