@@ -233,3 +233,45 @@ QUESTION 11
 
 </body>
 </html>
+
+QUESTION 12
+<!DOCTYPE html>
+INPUT:
+<html>
+<head>
+  <title>Student Grade Checker</title>
+</head>
+<body>
+
+  <h2>Enter Student Marks to Check Grade</h2>
+
+  <form method="post" action="">
+    <label for="marks">Enter Marks (%): </label>
+    <input type="number" name="marks" min="0" max="100" required>
+    <input type="submit" value="Check Grade">
+  </form>
+
+  <br>
+
+  <?php
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $marks = $_POST['marks'];
+
+    echo "<h3>Result:</h3>";
+
+    if ($marks >= 75 && $marks <= 100) {
+      echo "Grade: <strong>First Class</strong>";
+    } elseif ($marks >= 60 && $marks < 75) {
+      echo "Grade: <strong>Second Class</strong>";
+    } elseif ($marks >= 40 && $marks < 60) {
+      echo "Grade: <strong>Third Class</strong>";
+    } elseif ($marks >= 0 && $marks < 40) {
+      echo "Grade: <strong>Fail</strong>";
+    } else {
+      echo "Invalid marks. Please enter a value between 0 and 100.";
+    }
+  }
+  ?>
+
+</body>
+</html>
