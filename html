@@ -275,3 +275,44 @@ INPUT:
 
 </body>
 </html>
+
+QUESTION 14
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Form</title>
+</head>
+<body>
+
+<h2>Contact Us</h2>
+
+<form method="post" action="">
+  <label for="name">Name:</label><br>
+  <input type="text" name="name" required><br><br>
+
+  <label for="email">Email:</label><br>
+  <input type="email" name="email" required><br><br>
+
+  <label for="message">Message:</label><br>
+  <textarea name="message" rows="5" cols="30" required></textarea><br><br>
+
+  <input type="submit" value="Submit">
+</form>
+
+<br>
+
+<?php
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Collect and sanitize input values
+  $name = htmlspecialchars($_POST["name"]);
+  $email = htmlspecialchars($_POST["email"]);
+
+  // Display confirmation message
+  echo "<h3>Thank you for contacting us, $name!</h3>";
+  echo "<p>We have received your message and will get back to you at <strong>$email</strong>.</p>";
+}
+?>
+
+</body>
+</html>
