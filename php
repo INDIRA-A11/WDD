@@ -291,3 +291,34 @@ echo "sub is $sub";
 ?>
 Output:
 sub is 34
+
+QUESTION 18
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Using isset() in PHP</title>
+</head>
+<body>
+
+<h2>Enter Your Name</h2>
+
+<form method="post">
+  <input type="text" name="username" placeholder="Enter your name"><br><br>
+  <input type="submit" name="submit" value="Submit">
+</form>
+
+<?php
+// Check if the form is submitted
+if (isset($_POST['submit'])) {
+    // Check if the username is set and not empty
+    if (isset($_POST['username']) && $_POST['username'] != "") {
+        $name = $_POST['username'];
+        echo "<h3>Hello, $name!</h3>";
+    } else {
+        echo "<h3>Error: Name field is empty!</h3>";
+    }
+}
+?>
+
+</body>
+</html>
