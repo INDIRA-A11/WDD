@@ -280,3 +280,14 @@ Combined Output:
 "; echo "$var1," . @$not_set . ",$that+$the_other"; echo "
 
 "; ?>
+
+QUESTION 13
+<?php
+// Convert number to string and extract a substring
+$sub = substr(12345, 2, 2);
+
+// Display the result
+echo "sub is $sub";
+?>
+Output:
+sub is 34
