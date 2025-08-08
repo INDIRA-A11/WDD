@@ -451,3 +451,39 @@ if (isset($_POST['submit'])) {
 
 </body>
 </html>
+
+QUESTION 22
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Word Occurrence Counter</title>
+</head>
+<body>
+
+<h2>Count Word Occurrences</h2>
+
+<form method="post">
+  Enter a sentence:<br>
+  <textarea name="text" rows="4" cols="50" required></textarea><br><br>
+
+  Enter the word to count:<br>
+  <input type="text" name="word" required><br><br>
+
+  <input type="submit" name="submit" value="Count Word">
+</form>
+
+<?php
+if (isset($_POST['submit'])) {
+    $text = strtolower($_POST['text']);
+    $word = strtolower(trim($_POST['word']));
+
+    // Count occurrences using substr_count
+    $wordCount = substr_count($text, $word);
+
+    echo "<h3>Result:</h3>";
+    echo "The word '<strong>$word</strong>' appears <strong>$wordCount</strong> time(s) in the given text.";
+}
+?>
+
+</body>
+</html>
