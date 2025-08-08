@@ -487,3 +487,52 @@ if (isset($_POST['submit'])) {
 
 </body>
 </html>
+
+QUESTION 23
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GET and POST Example</title>
+</head>
+<body>
+
+<h2>Search Form (GET Method)</h2>
+<form method="get">
+  Search: <input type="text" name="search">
+  <input type="submit" value="Search">
+</form>
+
+<?php
+// Handle GET request
+if (isset($_GET['search'])) {
+    $search = htmlspecialchars($_GET['search']);
+    echo "<p>You searched for: <strong>$search</strong></p>";
+}
+?>
+
+<hr>
+
+<h2>Login Form (POST Method)</h2>
+<form method="post">
+  Username: <input type="text" name="username" required><br>
+  Password: <input type="password" name="password" required><br>
+  <input type="submit" name="login" value="Login">
+</form>
+
+<?php
+// Handle POST request
+if (isset($_POST['login'])) {
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
+   
+    // Dummy login check (for example only)
+    if ($username == "admin" && $password == "1234") {
+        echo "<p>✅ Welcome, <strong>$username</strong>! You are logged in.</p>";
+    } else {
+        echo "<p>❌ Invalid username or password.</p>";
+    }
+}
+?>
+
+</body>
+</html>
