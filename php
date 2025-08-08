@@ -173,3 +173,37 @@ $getAge = $_GET['age'] ?? null;
 
 </body>
 </html>
+
+QUESTION 7
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Greeting Form</title>
+</head>
+<body>
+
+  <h2>Enter Your Name</h2>
+
+  <form method="post" action="">
+    Name: <input type="text" name="username">
+    <input type="submit" value="Submit">
+  </form>
+
+  <br>
+
+  <?php
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = trim($_POST['username']); // remove extra spaces
+
+    if (empty($name)) {
+      echo "<p style='color:red;'>Error: Name field cannot be empty.</p>";
+    } else {
+      echo "<h3>Hello $name, Welcome to Everyone!</h3>";
+      echo "<h4>Have a nice day!!</h4>";
+    }
+  }
+  ?>
+
+</body>
+</html>
+
