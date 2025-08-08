@@ -316,3 +316,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </body>
 </html>
+
+QUESTION 15
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sum of Digits</title>
+</head>
+<body>
+
+<h2>Enter a Number to Calculate Sum of Digits</h2>
+
+<form method="post" action="">
+  <label for="number">Number:</label>
+  <input type="number" name="number" required>
+  <input type="submit" value="Calculate">
+</form>
+
+<br>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $number = abs((int)$_POST["number"]); // Ensure it's positive integer
+  $sum = 0;
+  $temp = $number;
+
+  while ($temp > 0) {
+    $digit = $temp % 10;  // Extract last digit
+    $sum += $digit;       // Add to sum
+    $temp = (int)($temp / 10); // Remove last digit
+  }
+
+  echo "<h3>Sum of digits of $number is: $sum</h3>";
+}
+?>
+
+</body>
+</html>
