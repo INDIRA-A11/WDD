@@ -207,3 +207,30 @@ QUESTION 7
 </body>
 </html>
 
+QUESTION 8
+<?php
+function deal($costA, $sizeA, $costB, $sizeB) {
+    // Calculate cost per unit for both drinks
+    $unitA = $costA / $sizeA;
+    $unitB = $costB / $sizeB;
+
+    echo "Drink A - ₹$costA for $sizeA units: ₹" . round($unitA, 2) . " per unit<br>";
+    echo "Drink B - ₹$costB for $sizeB units: ₹" . round($unitB, 2) . " per unit<br><br>";
+
+    // Compare and give recommendation
+    if ($unitA < $unitB) {
+        echo "<strong>Choose Drink A. It offers a better deal.</strong>";
+    } elseif ($unitB < $unitA) {
+        echo "<strong>Choose Drink B. It offers a better deal.</strong>";
+    } else {
+        echo "<strong>Both drinks cost the same per unit. Choose any.</strong>";
+    }
+}
+
+// Call the function with given values
+deal(25, 11, 23, 9);
+?>
+OUTPUT:
+Drink A - ₹25 for 11 units: ₹2.27 per unit<br>Drink B - ₹23 for 9 units: ₹2.56 per unit<br><br><strong>Choose Drink A. It offers a better deal.</strong>
+
+=== Code Execution Successful ===
