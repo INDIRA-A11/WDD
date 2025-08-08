@@ -725,3 +725,24 @@ echo "<strong>5. ceil():</strong><br>";
 $value = 4.3;
 echo "Ceiling value of $value is: " . ceil($value) . "<br>";
 ?>
+
+QUESTION 30
+<?php
+function generatePassword($length = 12) {
+    // Character set including letters, numbers, and special characters
+    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:,.<>?';
+
+    $password = '';
+    $charLength = strlen($chars);
+
+    for ($i = 0; $i < $length; $i++) {
+        $password .= $chars[rand(0, $charLength - 1)];
+    }
+
+    return $password;
+}
+
+// Generate and display the password
+echo "<h3>Generated Random Password:</h3>";
+echo "<strong>" . generatePassword(12) . "</strong>"; // 12-character password
+?>
