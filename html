@@ -26,7 +26,7 @@ QUESTION 3
       padding: 20px;
       text-align: center;
     }
-
+    
     nav {
       background-color: #444;
     }
@@ -116,3 +116,65 @@ QUESTION 3
 
 </body>
 </html>
+
+QUESTION 10
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Grade Checker</title>
+</head>
+<body>
+
+  <h2>Student Grade Checker</h2>
+
+  <?php
+  // Sample student marks array
+  $students = [
+    "John" => 95,
+    "Alice" => 82,
+    "Bob" => 67,
+    "Diana" => 54,
+    "Eve" => 38
+  ];
+
+  // Loop through each student and assign grades
+  foreach ($students as $name => $marks) {
+    echo "<strong>$name</strong> - Marks: $marks - Grade: ";
+
+    if ($marks >= 90 && $marks <= 100) {
+      echo "A";
+    } elseif ($marks >= 75 && $marks < 90) {
+      echo "B";
+    } elseif ($marks >= 60 && $marks < 75) {
+      echo "C";
+    } elseif ($marks >= 40 && $marks < 60) {
+      echo "D";
+    } elseif ($marks < 40) {
+      echo "Fail";
+    } else {
+      echo "Invalid Marks";
+    }
+
+    echo "<br>";
+  }
+  ?>
+
+</body>
+</html>
+
+OUTPUT:
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Grade Checker</title>
+</head>
+<body>
+
+  <h2>Student Grade Checker</h2>
+
+  <strong>John</strong> - Marks: 95 - Grade: A<br><strong>Alice</strong> - Marks: 82 - Grade: B<br><strong>Bob</strong> - Marks: 67 - Grade: C<br><strong>Diana</strong> - Marks: 54 - Grade: D<br><strong>Eve</strong> - Marks: 38 - Grade: Fail<br>
+</body>
+</html>
+
+
+=== Code Execution Successful ===
