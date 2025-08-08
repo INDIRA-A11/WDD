@@ -103,3 +103,73 @@ QUESTION 5
   ?>
 </body>
 </html>
+
+QUESTION 6
+<?php
+// Start the session at the top of the page
+session_start();
+
+// Set session variables
+$_SESSION['username'] = 'Gayathri';
+$_SESSION['role'] = 'Student';
+
+// Handle POST form submission
+$postName = $_POST['post_name'] ?? null;
+$postAge = $_POST['post_age'] ?? null;
+
+// Handle GET parameters
+$getName = $_GET['name'] ?? null;
+$getAge = $_GET['age'] ?? null;
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Passing in PHP</title>
+</head>
+<body>
+  <h1>PHP Data Passing Example</h1>
+
+  <!-- GET Method -->
+  <h2>1. Pass data using GET</h2>
+  <a href="data_passing.php?name=Gayathri&age=21">Click here to send data using GET</a>
+
+  <!-- POST Method -->
+  <h2>2. Pass data using POST</h2>
+  <form method="post" action="data_passing.php">
+    Name: <input type="text" name="post_name" required><br>
+    Age: <input type="number" name="post_age" required><br>
+    <input type="submit" value="Send with POST">
+  </form>
+
+  <!-- Display Results -->
+  <hr>
+
+  <h2>📤 Received via GET:</h2>
+  <?php
+  if ($getName && $getAge) {
+    echo "Name: " . htmlspecialchars($getName) . "<br>";
+    echo "Age: " . htmlspecialchars($getAge) . "<br>";
+  } else {
+    echo "No GET data received.<br>";
+  }
+  ?>
+
+  <h2>📤 Received via POST:</h2>
+  <?php
+  if ($postName && $postAge) {
+    echo "Name: " . htmlspecialchars($postName) . "<br>";
+    echo "Age: " . htmlspecialchars($postAge) . "<br>";
+  } else {
+    echo "No POST data received.<br>";
+  }
+  ?>
+
+  <h2>📤 Session Data:</h2>
+  <?php
+  echo "Username: " . $_SESSION['username'] . "<br>";
+  echo "Role: " . $_SESSION['role'] . "<br>";
+  ?>
+
+</body>
+</html>
