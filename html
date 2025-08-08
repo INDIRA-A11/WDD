@@ -353,3 +353,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </body>
 </html>
+
+QUESTION 16
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sum of Two Numbers</title>
+</head>
+<body>
+
+<h2>Enter Two Numbers to Find Their Sum</h2>
+
+<form method="post" action="">
+  <label>First Number:</label>
+  <input type="number" name="num1" required><br><br>
+
+  <label>Second Number:</label>
+  <input type="number" name="num2" required><br><br>
+
+  <input type="submit" name="submit" value="Add Numbers">
+</form>
+
+<?php
+// Function to add two numbers
+function addNumbers($a, $b) {
+  return $a + $b;
+}
+
+// Check if form is submitted
+if (isset($_POST['submit'])) {
+  $num1 = (int)$_POST['num1'];
+  $num2 = (int)$_POST['num2'];
+  $sum = addNumbers($num1, $num2);
+
+  echo "<h3>Result: $num1 + $num2 = $sum</h3>";
+}
+?>
+
+</body>
+</html>
