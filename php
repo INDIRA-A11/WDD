@@ -536,3 +536,70 @@ if (isset($_POST['login'])) {
 
 </body>
 </html>
+
+QUESTION 24
+<?php
+// Sample string
+$text = "  Hello World! Welcome to PHP string functions.  ";
+
+// Display original string
+echo "<h3>Original String:</h3>";
+echo "<pre>$text</pre>";
+
+// 1. strlen() – Get string length
+echo "<p><strong>Length:</strong> " . strlen($text) . "</p>";
+
+// 2. trim() – Remove whitespace
+$trimmed = trim($text);
+echo "<p><strong>Trimmed:</strong> '$trimmed'</p>";
+
+// 3. strtolower() – Convert to lowercase
+echo "<p><strong>Lowercase:</strong> " . strtolower($trimmed) . "</p>";
+
+// 4. strtoupper() – Convert to uppercase
+echo "<p><strong>Uppercase:</strong> " . strtoupper($trimmed) . "</p>";
+
+// 5. ucfirst() – First character uppercase
+echo "<p><strong>ucfirst:</strong> " . ucfirst($trimmed) . "</p>";
+
+// 6. ucwords() – Uppercase first character of each word
+echo "<p><strong>ucwords:</strong> " . ucwords($trimmed) . "</p>";
+
+// 7. strrev() – Reverse the string
+echo "<p><strong>Reversed:</strong> " . strrev($trimmed) . "</p>";
+
+// 8. strpos() – Find position of word
+$position = strpos($trimmed, "PHP");
+echo "<p><strong>Position of 'PHP':</strong> $position</p>";
+
+// 9. str_replace() – Replace words
+$replaced = str_replace("PHP", "HTML", $trimmed);
+echo "<p><strong>After Replace 'PHP' with 'HTML':</strong> $replaced</p>";
+
+// 10. substr() – Extract part of string
+echo "<p><strong>Substring (start at 6, length 5):</strong> " . substr($trimmed, 6, 5) . "</p>";
+
+// 11. explode() – Convert string to array
+$words = explode(" ", $trimmed);
+echo "<p><strong>Exploded into array:</strong><pre>";
+print_r($words);
+echo "</pre></p>";
+
+// 12. implode() – Convert array to string
+$joined = implode("-", $words);
+echo "<p><strong>Imploded back:</strong> $joined</p>";
+
+// 13. str_repeat() – Repeat a string
+echo "<p><strong>Repeat 'Hi ' 3 times:</strong> " . str_repeat("Hi ", 3) . "</p>";
+
+// 14. strcmp() – Compare strings (case-sensitive)
+echo "<p><strong>Compare 'Hello' and 'hello':</strong> " . strcmp("Hello", "hello") . "</p>";
+
+// 15. str_shuffle() – Shuffle characters
+echo "<p><strong>Shuffled string:</strong> " . str_shuffle($trimmed) . "</p>";
+
+// 16. number_format() – Format number as string
+$number = 12345.6789;
+echo "<p><strong>Formatted Number:</strong> " . number_format($number, 2) . "</p>";
+
+?>
