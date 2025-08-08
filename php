@@ -695,3 +695,33 @@ echo "<br><br>Comparing \$b and \$c:<br>";
 var_dump($b == $c);  // true - after type juggling
 var_dump($b === $c); // false - string vs float
 ?>
+
+QUESTION 29
+<?php
+echo "<h2>PHP Function Examples</h2>";
+
+// 1. rand()
+echo "<strong>1. rand():</strong><br>";
+$randomNumber = rand(1, 100);
+echo "Random number between 1 and 100 is: $randomNumber<br><br>";
+
+// 2. abs()
+echo "<strong>2. abs():</strong><br>";
+$number = -25;
+echo "Absolute value of $number is: " . abs($number) . "<br><br>";
+
+// 3. str_replace()
+echo "<strong>3. str_replace():</strong><br>";
+$text = "Hello world!";
+$replaced = str_replace("world", "PHP", $text);
+echo "After replacement: $replaced<br><br>";
+
+// 4. pi()
+echo "<strong>4. pi():</strong><br>";
+echo "Value of pi is: " . pi() . "<br><br>";
+
+// 5. ceil()
+echo "<strong>5. ceil():</strong><br>";
+$value = 4.3;
+echo "Ceiling value of $value is: " . ceil($value) . "<br>";
+?>
