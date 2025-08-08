@@ -675,3 +675,23 @@ echo "Division (a / b): " . ($a / $b) . "<br>";        // 3.333...
 echo "Modulus (a % b): " . ($a % $b) . "<br>";         // 1
 echo "Exponentiation (a ** b): " . ($a ** $b) . "<br>";// 1000
 ?>
+
+QUESTION 28
+<?php
+$a = 100;
+$b = "100";
+$c = 100.0;
+
+// Compare values using var_dump
+echo "Comparing \$a and \$b:<br>";
+var_dump($a == $b);  // true - values are equal
+var_dump($a === $b); // false - different types
+
+echo "<br><br>Comparing \$a and \$c:<br>";
+var_dump($a == $c);  // true - values are equal
+var_dump($a === $c); // false - integer vs float
+
+echo "<br><br>Comparing \$b and \$c:<br>";
+var_dump($b == $c);  // true - after type juggling
+var_dump($b === $c); // false - string vs float
+?>
