@@ -603,3 +603,16 @@ $number = 12345.6789;
 echo "<p><strong>Formatted Number:</strong> " . number_format($number, 2) . "</p>";
 
 ?>
+
+QUESTION 25
+<?php
+// Original string
+$text = "The Thing will come to you soon";
+
+// Replace the first occurrence of 'the' (case-insensitive)
+$updated = preg_replace('/\bthe\b/i', 'best', $text, 1);
+
+// Display the result
+echo "<p><strong>Original:</strong> $text</p>";
+echo "<p><strong>Modified:</strong> $updated</p>";
+?>
