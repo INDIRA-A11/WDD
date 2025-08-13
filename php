@@ -779,28 +779,7 @@ Array
     [2] => Mango
 )
 
-QUESTION 32
-<?php
-// Original array
-$numbers = array(10, 20, 30, 40, 50);
-
-// Remove the first element
-array_shift($numbers);
-
-// Display the updated array
-print_r($numbers);
-?>
-Output:
-
-Array
-(
-    [0] => 20
-    [1] => 30
-    [2] => 40
-    [3] => 50
-)
-
-QUESTION 33
+QUESTION 32 a)
 <?php
 $mail = "admin@example.com";                     // Step 1: $mail contains "admin@example.com"
 $mail = str_replace("a","@",$mail);              // Step 2: Replace every "a" with "@"
@@ -810,7 +789,7 @@ echo "Contact me at $mail.";                     // Step 3: Output the string
 Output:
 Contact me at @dmin@ex@mple.com.
 
-QUESTION 34
+QUESTION 32 b)
 <?php
 $names = array("alex", "jean", "emily", "jane");
 
@@ -827,7 +806,7 @@ Array
     [2] => emily
 )
 
-QUESTION 35
+QUESTION 33
 <?php
 // Create a 3x3 matrix as a multidimensional array
 $matrix = array(
@@ -846,3 +825,18 @@ echo "The value in the second row and third column is: $value";
 Output:
 
 The value in the second row and third column is: 6
+
+QUESTION 34
+<?php
+// Original string
+$text = "PHP is great. Learning PHP is fun! PHP PHP PHP.";
+
+// Replace all occurrences of the word 'PHP' with 'JavaScript'
+$newText = preg_replace("/\bPHP\b/", "JavaScript", $text);
+
+// Display the result
+echo $newText;
+?>
+
+Output:
+JavaScript is great. Learning JavaScript is fun! JavaScript JavaScript JavaScript.
