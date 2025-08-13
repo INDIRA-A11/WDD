@@ -826,3 +826,23 @@ Array
 (
     [2] => emily
 )
+
+QUESTION 35
+<?php
+// Create a 3x3 matrix as a multidimensional array
+$matrix = array(
+    array(1, 2, 3),
+    array(4, 5, 6),
+    array(7, 8, 9)
+);
+
+// Access the value in the second row and third column
+$value = $matrix[1][2]; // Index starts at 0: row 1 = second row, col 2 = third column
+
+// Display the value
+echo "The value in the second row and third column is: $value";
+?>
+
+Output:
+
+The value in the second row and third column is: 6
