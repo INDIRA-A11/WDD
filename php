@@ -799,3 +799,13 @@ Array
     [2] => 40
     [3] => 50
 )
+
+QUESTION 33
+<?php
+$mail = "admin@example.com";                     // Step 1: $mail contains "admin@example.com"
+$mail = str_replace("a","@",$mail);              // Step 2: Replace every "a" with "@"
+echo "Contact me at $mail.";                     // Step 3: Output the string
+?>
+
+Output:
+Contact me at @dmin@ex@mple.com.
