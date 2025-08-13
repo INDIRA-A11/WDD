@@ -746,3 +746,36 @@ function generatePassword($length = 12) {
 echo "<h3>Generated Random Password:</h3>";
 echo "<strong>" . generatePassword(12) . "</strong>"; // 12-character password
 ?>
+
+QUESTION 31
+<?php
+$fruits = array("Apple", "Banana", "Cherry", "Mango");
+
+echo "Original array:\n";
+print_r($fruits);
+
+// Remove the first element
+array_shift($fruits);
+
+echo "Array after removing first element:\n";
+print_r($fruits);
+?>
+
+Output:
+
+Original array:
+Array
+(
+    [0] => Apple
+    [1] => Banana
+    [2] => Cherry
+    [3] => Mango
+)
+Array after removing first element:
+Array
+(
+    [0] => Banana
+    [1] => Cherry
+    [2] => Mango
+)
+
