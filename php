@@ -840,3 +840,29 @@ echo $newText;
 
 Output:
 JavaScript is great. Learning JavaScript is fun! JavaScript JavaScript JavaScript.
+
+QUESTION 35
+
+<?php
+// Array of strings
+$strings = array(
+    "PHP is great for web development.",
+    "I love coding in JavaScript.",
+    "Python is popular for data science."
+);
+
+// The word to search for
+$search = "PHP";
+
+// Loop through each string and check if it contains the search word
+foreach ($strings as $text) {
+    if (strpos($text, $search) !== false) {
+        echo "The string '$text' contains '$search'.<br>";
+    } else {
+        echo "The string '$text' does not contain '$search'.<br>";
+    }
+}
+?>
+
+Output:
+The string 'PHP is great for web development.' contains 'PHP'.<br>The string 'I love coding in JavaScript.' does not contain 'PHP'.<br>The string 'Python is popular for data science.' does not contain 'PHP'.<br>
