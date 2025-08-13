@@ -809,3 +809,20 @@ echo "Contact me at $mail.";                     // Step 3: Output the string
 
 Output:
 Contact me at @dmin@ex@mple.com.
+
+QUESTION 34
+<?php
+$names = array("alex", "jean", "emily", "jane");
+
+// Find all names starting with 'e'
+$name = preg_grep("/^e/", $names);
+
+// Display the matching names
+print_r($name);
+?>
+
+Output:
+Array
+(
+    [2] => emily
+)
