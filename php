@@ -779,3 +779,23 @@ Array
     [2] => Mango
 )
 
+QUESTION 32
+<?php
+// Original array
+$numbers = array(10, 20, 30, 40, 50);
+
+// Remove the first element
+array_shift($numbers);
+
+// Display the updated array
+print_r($numbers);
+?>
+Output:
+
+Array
+(
+    [0] => 20
+    [1] => 30
+    [2] => 40
+    [3] => 50
+)
