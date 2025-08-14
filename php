@@ -1139,3 +1139,136 @@ pass1234 → Invalid
 PASS@123 → Invalid
 Pass123 → Invalid
 Valid@Password1 → Valid
+
+QUESTION 44
+<?php
+// Step 1: Create empty playlists array
+$playlists = array();
+
+// Step 2: Create a playlist
+function createPlaylist(&$playlists, $name) {
+    if (!isset($playlists[$name])) {
+        $playlists[$name] = array();
+        echo "Playlist '$name' created successfully.\n";
+    } else {
+        echo "Playlist '$name' already exists.\n";
+    }
+}
+
+// Step 3: Add a song to a playlist
+function addSong(&$playlists, $playlistName, $title, $artist, $duration) {
+    if (isset($playlists[$playlistName])) {
+        $playlists[$playlistName][] = array(
+            "title" => $title,
+            "artist" => $artist,
+            "duration" => $duration
+        );
+        echo "Song '$title' added to '$playlistName'.\n";
+    } else {
+        echo "Playlist '$playlistName' does not exist.\n";
+    }
+}
+
+// Step 4: Remove a song from a playlist
+function removeSong(&$playlists, $playlistName, $title) {
+    if (isset($playlists[$playlistName])) {
+        foreach ($playlists[$playlistName] as $index => $song) {
+            if (strcasecmp($song["title"], $title) == 0) {
+                unset($playlists[$playlistName][$index]);
+                $playlists[$playlistName] = array_values($playlists[$playlistName]); // Reindex
+                echo "Song '$title' removed from '$playlistName'.\n";
+                return;
+            }
+        }
+        echo "Song '$title' not found in '$playlistName'.\n";
+    } else {
+        echo "Playlist '$playlistName' does not exist.\n";
+    }
+}
+
+// Step 5: Display songs in a playlist
+function displayPlaylist($playlists, $playlistName) {
+    if (isset($playlists[$playlistName])) {
+        echo "\nPlaylist: $playlistName\n";
+        if (empty($playlists[$playlistName])) {
+            echo "(No songs in this playlist)\n";
+            return;
+        }
+        foreach ($playlists[$playlistName] as $song) {
+            echo "- {$song['title']} by {$song['artist']} ({$song['duration']})\n";
+        }
+    } else {
+        echo "Playlist '$playlistName' does not exist.\n";
+    }
+}
+
+// Step 6: Sort playlist by song title
+function sortPlaylistByTitle(&$playlists, $playlistName) {
+    if (isset($playlists[$playlistName])) {
+        usort($playlists[$playlistName], function($a, $b) {
+            return strcasecmp($a["title"], $b["title"]);
+        });
+        echo "Playlist '$playlistName' sorted by title.\n";
+    }
+}
+
+// Step 7: Shuffle playlist
+function shufflePlaylist(&$playlists, $playlistName) {
+    if (isset($playlists[$playlistName])) {
+        shuffle($playlists[$playlistName]);
+        echo "Playlist '$playlistName' shuffled.\n";
+    }
+}
+
+// ----------- Example Usage -----------
+
+// Create playlists
+createPlaylist($playlists, "Favorites");
+createPlaylist($playlists, "Workout");
+
+// Add songs
+addSong($playlists, "Favorites", "Shape of You", "Ed Sheeran", "4:24");
+addSong($playlists, "Favorites", "Blinding Lights", "The Weeknd", "3:20");
+addSong($playlists, "Workout", "Stronger", "Kanye West", "5:12");
+
+// Display before sorting
+displayPlaylist($playlists, "Favorites");
+
+// Sort and display
+sortPlaylistByTitle($playlists, "Favorites");
+displayPlaylist($playlists, "Favorites");
+
+// Shuffle and display
+shufflePlaylist($playlists, "Favorites");
+displayPlaylist($playlists, "Favorites");
+
+// Remove a song
+removeSong($playlists, "Favorites", "Shape of You");
+displayPlaylist($playlists, "Favorites");
+?>
+
+Output:
+
+Playlist 'Favorites' created successfully.
+Playlist 'Workout' created successfully.
+Song 'Shape of You' added to 'Favorites'.
+Song 'Blinding Lights' added to 'Favorites'.
+Song 'Stronger' added to 'Workout'.
+
+Playlist: Favorites
+- Shape of You by Ed Sheeran (4:24)
+- Blinding Lights by The Weeknd (3:20)
+Playlist 'Favorites' sorted by title.
+
+Playlist: Favorites
+- Blinding Lights by The Weeknd (3:20)
+- Shape of You by Ed Sheeran (4:24)
+Playlist 'Favorites' shuffled.
+
+Playlist: Favorites
+- Blinding Lights by The Weeknd (3:20)
+- Shape of You by Ed Sheeran (4:24)
+Song 'Shape of You' removed from 'Favorites'.
+
+Playlist: Favorites
+- Blinding Lights by The Weeknd (3:20)
