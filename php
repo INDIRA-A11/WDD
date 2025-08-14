@@ -2622,3 +2622,106 @@ Array
     [B] => GREEN
     [c] => RED
 )
+
+QUESTION 70
+<?php
+// ===========================
+// 1. Take input from user (CLI version)
+echo "Enter numbers separated by spaces: ";
+$handle = fopen("php://stdin", "r");
+$line = fgets($handle);
+fclose($handle);
+$numbers = array_map('intval', explode(' ', trim($line)));
+echo "You entered: ";
+print_r($numbers);
+echo "\n";
+
+// ===========================
+// 2. Sum of even numbers
+function sumEvenNumbers($array) {
+    $sum = 0;
+    foreach ($array as $num) {
+        if ($num % 2 == 0) $sum += $num;
+    }
+    return $sum;
+}
+echo "Sum of even numbers: " . sumEvenNumbers($numbers) . "\n\n";
+
+// ===========================
+// 3. Sales forecasting
+$sales = [1200, 1350, 1420, 1500, 1600, 1720, 1800, 1900, 2050, 2200, 2300, 2450];
+function calculateGrowthRates($sales) {
+    $growthRates = [];
+    for ($i = 1; $i < count($sales); $i++) {
+        $growthRates[] = round((($sales[$i] - $sales[$i-1]) / $sales[$i-1]) * 100, 2);
+    }
+    return $growthRates;
+}
+function forecastNextMonth($sales) {
+    $growthRates = calculateGrowthRates($sales);
+    $avgGrowth = array_sum($growthRates) / count($growthRates);
+    return round(end($sales) * (1 + $avgGrowth/100), 2);
+}
+echo "Sales Growth Rates: ";
+print_r(calculateGrowthRates($sales));
+echo "Next Month Sales Forecast: " . forecastNextMonth($sales) . "\n\n";
+
+// ===========================
+// 4. Check if a string contains another string
+function checkSubstring($mainString, $searchString) {
+    return (strpos($mainString, $searchString) !== false) 
+        ? "The string '$searchString' was found in the main string." 
+        : "The string '$searchString' was NOT found in the main string.";
+}
+$mainString = "Welcome to the world of PHP programming.";
+$searchString = "PHP";
+echo checkSubstring($mainString, $searchString) . "\n\n";
+
+// ===========================
+// 5. Count elements in an array
+function countElements($array) {
+    return "Count using count(): " . count($array) . ", Count using sizeof(): " . sizeof($array);
+}
+echo countElements($numbers) . "\n\n";
+
+// ===========================
+// 6. Change array values to upper or lower case
+function changeArrayCase($array, $case='lower') {
+    if ($case === 'lower') return array_map('strtolower', $array);
+    if ($case === 'upper') return array_map('strtoupper', $array);
+    return $array;
+}
+$Color = ['A'=>'Blue','B'=>'Green','c'=>'Red'];
+echo "Lower case array:\n"; print_r(changeArrayCase($Color,'lower'));
+echo "Upper case array:\n"; print_r(changeArrayCase($Color,'upper'));
+echo "\n";
+
+// ===========================
+// 7. Word tokenization and count occurrences
+$sentence = "PHP is great. PHP is easy to learn, and PHP is powerful.";
+$sentence = strtolower($sentence);
+preg_match_all('/\b\w+\b/', $sentence, $matches);
+$words = $matches[0];
+$wordCount = array_count_values($words);
+echo "Word occurrences:\n";
+print_r($wordCount);
+echo "\n";
+
+// ===========================
+// 8. Division with error handling
+function divide($a, $b) {
+    try {
+        if ($b == 0) throw new DivisionByZeroError("Cannot divide by zero.");
+        echo "Result of $a / $b = " . ($a/$b) . "\n";
+    } catch (DivisionByZeroError $e) {
+        echo "Error: " . $e->getMessage() . "\n";
+    }
+}
+divide(10,2);
+divide(10,0);
+?>
+
+Output:
+
+Enter numbers separated by spaces: 
+Error: Command failed: timeout 7 php HelloWorld.php
