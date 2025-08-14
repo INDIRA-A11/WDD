@@ -1760,3 +1760,65 @@ Output:
     [2] => 40
     [3] => 50
 )
+
+QUESTION 54
+<?php
+echo "<h2>Ticket Booking Queue Simulation</h2>";
+
+// Initialize empty queue
+$queue = [];
+
+// Function to add a person to the queue
+function bookTicket(&$queue, $name) {
+    array_push($queue, $name); // Enqueue
+    echo "$name has been added to the booking queue.<br>";
+}
+
+// Function to process the next booking
+function processBooking(&$queue) {
+    if (!empty($queue)) {
+        $person = array_shift($queue); // Dequeue
+        echo "Processing ticket booking for: $person<br>";
+    } else {
+        echo "No one in the queue.<br>";
+    }
+}
+
+// Add people to the queue
+bookTicket($queue, "Alice");
+bookTicket($queue, "Bob");
+bookTicket($queue, "Charlie");
+
+echo "<br><strong>Current Queue:</strong> ";
+print_r($queue);
+echo "<br><br>";
+
+// Process ticket bookings in order
+processBooking($queue);
+processBooking($queue);
+
+echo "<br><strong>Queue After Processing:</strong> ";
+print_r($queue);
+echo "<br><br>";
+
+// Add another person
+bookTicket($queue, "David");
+
+// Continue processing
+processBooking($queue);
+processBooking($queue);
+?>
+
+Output:
+
+<h2>Ticket Booking Queue Simulation</h2>Alice has been added to the booking queue.<br>Bob has been added to the booking queue.<br>Charlie has been added to the booking queue.<br><br><strong>Current Queue:</strong> Array
+(
+    [0] => Alice
+    [1] => Bob
+    [2] => Charlie
+)
+<br><br>Processing ticket booking for: Alice<br>Processing ticket booking for: Bob<br><br><strong>Queue After Processing:</strong> Array
+(
+    [0] => Charlie
+)
+<br><br>David has been added to the booking queue.<br>Processing ticket booking for: Charlie<br>Processing ticket booking for: David<br>
