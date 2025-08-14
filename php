@@ -2208,3 +2208,99 @@ if ($result) {
 
 Output:
 Value 'Alice' found at key(s): A101, A104
+
+QUESTION 61
+<?php
+echo "<h2>Deleting Elements from an Array in PHP</h2>";
+
+// Original array
+$array = [1, 2, 3, 4, 5];
+echo "<strong>Original Array:</strong> ";
+print_r($array);
+echo "<br><br>";
+
+// 1. Delete by Key/Index using unset()
+unset($array[2]); // Deletes element with index 2 (value 3)
+echo "<strong>After unset() by index 2:</strong> ";
+print_r($array);
+echo "<br><br>";
+
+// Re-index array
+$array = array_values($array);
+echo "<strong>After re-indexing:</strong> ";
+print_r($array);
+echo "<br><br>";
+
+// 2. Delete by Value
+$array = [1, 2, 3, 4, 5];
+$valueToDelete = 3;
+$key = array_search($valueToDelete, $array);
+if ($key !== false) {
+    unset($array[$key]);
+}
+$array = array_values($array); // Re-index
+echo "<strong>After deleting value 3:</strong> ";
+print_r($array);
+echo "<br><br>";
+
+// 3. Remove First Element using array_shift()
+$array = [1, 2, 3, 4, 5];
+array_shift($array);
+echo "<strong>After array_shift() (remove first element):</strong> ";
+print_r($array);
+echo "<br><br>";
+
+// 4. Remove Last Element using array_pop()
+$array = [1, 2, 3, 4, 5];
+array_pop($array);
+echo "<strong>After array_pop() (remove last element):</strong> ";
+print_r($array);
+echo "<br><br>";
+?>
+
+Output:
+
+<h2>Deleting Elements from an Array in PHP</h2><strong>Original Array:</strong> Array
+(
+    [0] => 1
+    [1] => 2
+    [2] => 3
+    [3] => 4
+    [4] => 5
+)
+<br><br><strong>After unset() by index 2:</strong> Array
+(
+    [0] => 1
+    [1] => 2
+    [3] => 4
+    [4] => 5
+)
+<br><br><strong>After re-indexing:</strong> Array
+(
+    [0] => 1
+    [1] => 2
+    [2] => 4
+    [3] => 5
+)
+<br><br><strong>After deleting value 3:</strong> Array
+(
+    [0] => 1
+    [1] => 2
+    [2] => 4
+    [3] => 5
+)
+<br><br><strong>After array_shift() (remove first element):</strong> Array
+(
+    [0] => 2
+    [1] => 3
+    [2] => 4
+    [3] => 5
+)
+<br><br><strong>After array_pop() (remove last element):</strong> Array
+(
+    [0] => 1
+    [1] => 2
+    [2] => 3
+    [3] => 4
+)
+<br><br>
