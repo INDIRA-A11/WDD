@@ -879,3 +879,59 @@ echo "The third fruit is: " . $fruits[2];
 Output:
 The third fruit is: Cherry
 
+QUESTION 37
+<?php
+// Step 1: Create an array of fruits
+$fruits = array("Apple", "Banana", "Cherry");
+echo "Initial fruits:\n";
+print_r($fruits);
+
+// Step 2: Push new fruits to the end of the array
+array_push($fruits, "Mango", "Orange");
+echo "\nAfter pushing Mango and Orange:\n";
+print_r($fruits);
+
+// Step 3: Pop the last fruit from the array
+$removedFruit = array_pop($fruits);
+echo "\nAfter popping last fruit ($removedFruit):\n";
+print_r($fruits);
+
+// Step 4: Display the third element (index 2)
+if (isset($fruits[2])) {
+    echo "\nThe third fruit is: " . $fruits[2];
+} else {
+    echo "\nThere is no third fruit in the array.";
+}
+?>
+
+Output:
+
+Initial fruits:
+Array
+(
+    [0] => Apple
+    [1] => Banana
+    [2] => Cherry
+)
+
+After pushing Mango and Orange:
+Array
+(
+    [0] => Apple
+    [1] => Banana
+    [2] => Cherry
+    [3] => Mango
+    [4] => Orange
+)
+
+After popping last fruit (Orange):
+Array
+(
+    [0] => Apple
+    [1] => Banana
+    [2] => Cherry
+    [3] => Mango
+)
+
+The third fruit is: Cherry
+
