@@ -2044,3 +2044,70 @@ Array
     [1] => 90
     [2] => 80
 )
+
+QUESTION 57
+<?php
+echo "<h2>PHP Regular Expressions - Combined Examples</h2>";
+
+// 1. Simple Match
+echo "<h3>1. Simple Match</h3>";
+$pattern = "/php/i"; // case-insensitive
+$string = "I love PHP programming.";
+if (preg_match($pattern, $string)) {
+    echo "Match found!<br>";
+} else {
+    echo "No match found.<br>";
+}
+
+// 2. Extract All Matches
+echo "<h3>2. Extract All Matches</h3>";
+$pattern = "/\d+/"; // Match one or more digits
+$string = "Order numbers: 123, 456, and 789.";
+preg_match_all($pattern, $string, $matches);
+echo "Numbers found: ";
+print_r($matches[0]);
+echo "<br>";
+
+// 3. Replace Using RegEx
+echo "<h3>3. Replace Using RegEx</h3>";
+$pattern = "/\s+/"; // Match one or more spaces
+$replacement = "-";
+$string = "Hello   World   PHP";
+echo "Before: $string<br>";
+echo "After: " . preg_replace($pattern, $replacement, $string) . "<br>";
+
+// 4. Validate Email
+echo "<h3>4. Validate Email</h3>";
+$email = "user@example.com";
+if (preg_match("/^[\w.-]+@[\w.-]+\.[a-z]{2,}$/i", $email)) {
+    echo "$email is a valid email.<br>";
+} else {
+    echo "$email is an invalid email.<br>";
+}
+
+// 5. Split String Using RegEx
+echo "<h3>5. Split String Using RegEx</h3>";
+$string = "apple, banana; cherry orange";
+$pattern = "/[\s,;]+/"; // Split by spaces, commas, or semicolons
+$fruits = preg_split($pattern, $string);
+echo "Fruits: ";
+print_r($fruits);
+echo "<br>";
+?>
+
+Output:
+
+<h2>PHP Regular Expressions - Combined Examples</h2><h3>1. Simple Match</h3>Match found!<br><h3>2. Extract All Matches</h3>Numbers found: Array
+(
+    [0] => 123
+    [1] => 456
+    [2] => 789
+)
+<br><h3>3. Replace Using RegEx</h3>Before: Hello   World   PHP<br>After: Hello-World-PHP<br><h3>4. Validate Email</h3>user@example.com is a valid email.<br><h3>5. Split String Using RegEx</h3>Fruits: Array
+(
+    [0] => apple
+    [1] => banana
+    [2] => cherry
+    [3] => orange
+)
+<br>
