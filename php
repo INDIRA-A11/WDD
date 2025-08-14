@@ -1297,3 +1297,15 @@ foreach ($sentences as $sentence) {
 
 Output:
 Not found in: "PHP is a powerful scripting language."<br>Found 'programming' in: "Arrays are useful in programming."<br>Not found in: "I love learning new coding techniques."<br>
+
+QUESTION 46
+<?php
+// Create an array of fruits
+$fruits = array("Apple", "Banana", "Cherry", "Mango", "Orange");
+
+// Display the third element (arrays are zero-indexed)
+echo "The third fruit is: " . $fruits[2];
+?>
+
+Output:
+The third fruit is: Cherry
