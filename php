@@ -1822,3 +1822,34 @@ Output:
     [0] => Charlie
 )
 <br><br>David has been added to the booking queue.<br>Processing ticket booking for: Charlie<br>Processing ticket booking for: David<br>
+
+QUESTION 55
+<?php
+echo "<h2>Reverse a String using Stack Functions in PHP</h2>";
+
+// Input string
+$string = "HELLO";
+
+// Convert string to array of characters
+$chars = str_split($string);
+
+// Initialize empty stack
+$stack = [];
+
+// Push each character onto the stack
+foreach ($chars as $char) {
+    array_push($stack, $char);
+}
+
+// Pop characters from the stack to reverse
+$reversed = "";
+while (!empty($stack)) {
+    $reversed .= array_pop($stack);
+}
+
+echo "Original String: $string<br>";
+echo "Reversed String: $reversed";
+?>
+
+Output:
+<h2>Reverse a String using Stack Functions in PHP</h2>Original String: HELLO<br>Reversed String: OLLEH
