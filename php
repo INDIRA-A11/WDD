@@ -1337,4 +1337,22 @@ Array
 )
 
 QUESTION 46
+<?php
+// Create an array
+$colors = array("Red", "Green", "Blue", "Yellow", "Orange");
 
+// Value to search
+$searchValue = "Blue";
+
+// Use array_search() to find the index
+$index = array_search($searchValue, $colors);
+
+if ($index !== false) {
+    echo "The index of '$searchValue' is: $index";
+} else {
+    echo "'$searchValue' was not found in the array.";
+}
+?>
+
+Output:
+The index of 'Blue' is: 2
