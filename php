@@ -2138,3 +2138,37 @@ if (!empty($matches[0])) {
 
 Output:
 <h2>Extract Email Addresses Using RegEx in PHP</h2>Email addresses found:<br>- info@example.com<br>- support@domain.org<br>- sales@company.co.uk<br>
+
+QUESTION 59
+<?php
+// Function to calculate average
+function calculateAverage($numbers) {
+    if (empty($numbers)) {
+        return 0; // Avoid division by zero
+    }
+    $sum = array_sum($numbers);      // Sum of all elements
+    $count = count($numbers);        // Number of elements
+    $average = $sum / $count;        // Calculate average
+    return $average;
+}
+
+// Example usage
+$numbers = [10, 20, 30, 40, 50];
+$avg = calculateAverage($numbers);
+
+echo "Numbers: ";
+print_r($numbers);
+echo "<br>Average: $avg";
+?>
+
+Output:
+
+Numbers: Array
+(
+    [0] => 10
+    [1] => 20
+    [2] => 30
+    [3] => 40
+    [4] => 50
+)
+<br>Average: 30
