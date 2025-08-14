@@ -1356,3 +1356,20 @@ if ($index !== false) {
 
 Output:
 The index of 'Blue' is: 2
+
+QUESTION 47
+<?php
+// Original array
+$x = array(1, 2, 3, 4, 5);
+
+// Remove element at index 2 (which is value 3)
+unset($x[2]);
+
+// Print array elements
+foreach ($x as $value) {
+    echo $value . " ";
+}
+?>
+
+Output:
+1 2 4 5 
