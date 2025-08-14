@@ -1426,3 +1426,117 @@ PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in
 Stack trace:
 #0 {main}
   thrown in /HelloWorld.php on line 19
+
+QUESTION 49
+<?php
+echo "<h1>🏆 Player Performance Evaluation</h1>";
+
+/* ==================================================
+   A) SMALL DATA (IN-MEMORY CALCULATION)
+   ================================================== */
+$players = [
+    ["name" => "Alice",   "matches" => 10, "points" => 250, "assists" => 15, "goals" => 5, "rebounds" => 20],
+    ["name" => "Bob",     "matches" => 12, "points" => 300, "assists" => 12, "goals" => 8, "rebounds" => 25],
+    ["name" => "Charlie", "matches" =>  8, "points" => 200, "assists" => 10, "goals" => 6, "rebounds" => 15],
+];
+
+// Calculate performance index & average
+foreach ($players as &$p) {
+    $p['performance_index'] =
+        $p['points']   * 0.5 +
+        $p['assists']  * 0.3 +
+        $p['goals']    * 0.4 +
+        $p['rebounds'] * 0.2;
+
+    $p['avg_points'] = $p['matches'] > 0 ? $p['points'] / $p['matches'] : 0.0;
+}
+unset($p);
+
+// Sort by performance index (DESC)
+usort($players, fn($a, $b) => $b['performance_index'] <=> $a['performance_index']);
+
+// Display results
+echo "<h2>In-Memory Rankings</h2>";
+$rank = 1;
+foreach ($players as $p) {
+    printf(
+        "Rank #%d: %s | PI: %.2f | Avg Points: %.2f<br>",
+        $rank++,
+        htmlspecialchars($p['name']),
+        $p['performance_index'],
+        $p['avg_points']
+    );
+}
+
+/* ==================================================
+   B) LARGE DATA (MYSQL + PDO)
+   ================================================== */
+
+// Database connection settings
+$dbHost = '127.0.0.1';
+$dbName = 'sportsdb';
+$dbUser = 'root';
+$dbPass = '';
+$dsn = "mysql:host=$dbHost;dbname=$dbName;charset=utf8mb4";
+
+// Pagination setup
+$page     = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+$pageSize = isset($_GET['size']) ? max(1, min(200, (int)$_GET['size'])) : 10;
+$offset   = ($page - 1) * $pageSize;
+
+try {
+    $pdo = new PDO($dsn, $dbUser, $dbPass, [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]);
+
+    $sql = "
+        SELECT
+            player_id,
+            name,
+            matches,
+            points,
+            assists,
+            goals,
+            rebounds,
+            (points * 0.5 + assists * 0.3 + goals * 0.4 + rebounds * 0.2) AS performance_index,
+            CASE WHEN matches > 0 THEN points / matches ELSE 0 END AS avg_points
+        FROM players_stats
+        ORDER BY performance_index DESC
+        LIMIT :lim OFFSET :off
+    ";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':lim',  $pageSize, PDO::PARAM_INT);
+    $stmt->bindValue(':off',  $offset,   PDO::PARAM_INT);
+    $stmt->execute();
+
+    echo "<h2>Database Rankings (Page {$page})</h2>";
+    $rank = $offset + 1;
+
+    while ($row = $stmt->fetch()) {
+        printf(
+            "Rank #%d: %s | PI: %.2f | Avg Points: %.2f (Matches: %d, Pts: %d, Ast: %d, Gls: %d, Reb: %d)<br>",
+            $rank++,
+            htmlspecialchars($row['name']),
+            $row['performance_index'],
+            $row['avg_points'],
+            (int)$row['matches'],
+            (int)$row['points'],
+            (int)$row['assists'],
+            (int)$row['goals'],
+            (int)$row['rebounds']
+        );
+    }
+
+    $total = (int)$pdo->query("SELECT COUNT(*) FROM players_stats")->fetchColumn();
+    $totalPages = (int)ceil($total / $pageSize);
+    echo "<br><small>Total players: {$total} | Pages: {$totalPages}</small>";
+
+} catch (PDOException $e) {
+    echo "<p style='color:red'>Database error: " . htmlspecialchars($e->getMessage()) . "</p>";
+}
+?>
+
+Output:
+<h1>🏆 Player Performance Evaluation</h1><h2>In-Memory Rankings</h2>Rank #1: Bob | PI: 161.80 | Avg Points: 25.00<br>Rank #2: Alice | PI: 135.50 | Avg Points: 25.00<br>Rank #3: Charlie | PI: 108.40 | Avg Points: 25.00<br><p style='color:red'>Database error: could not find driver</p>
