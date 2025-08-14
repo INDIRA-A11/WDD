@@ -2518,3 +2518,38 @@ Forecasted sales for next month: 2614.77
 The string 'PHP' was found in the main string.
 
 Count using count(): 3, Count using sizeof(): 3
+
+QUESTION 67
+<?php
+// Input sentence
+$sentence = "PHP is great. PHP is easy to learn, and PHP is powerful.";
+
+// Step 1: Convert to lowercase to make counting case-insensitive
+$sentence = strtolower($sentence);
+
+// Step 2: Tokenize the sentence into words using regular expressions
+// \b\w+\b matches word boundaries (words)
+preg_match_all('/\b\w+\b/', $sentence, $matches);
+$words = $matches[0];
+
+// Step 3: Count the occurrences of each word
+$wordCount = array_count_values($words);
+
+// Step 4: Display the results
+echo "Word Occurrences:\n";
+foreach ($wordCount as $word => $count) {
+    echo "$word => $count\n";
+}
+?>
+
+Output:
+
+Word Occurrences:
+php => 3
+is => 3
+great => 1
+easy => 1
+to => 1
+learn => 1
+and => 1
+powerful => 1
