@@ -2304,3 +2304,33 @@ Output:
     [3] => 4
 )
 <br><br>
+
+QUESTION 62
+<?php
+echo "<h2>Rounding Values in PHP</h2>";
+
+// Sample values
+$values = [1.65, 1.65, -1.54];
+
+echo "<strong>Original Values:</strong> ";
+print_r($values);
+echo "<br><br>";
+
+echo "<strong>Rounded Values (1 decimal place):</strong><br>";
+
+// Round each value to 1 decimal place
+foreach ($values as $value) {
+    $rounded = round($value, 1); // 1 decimal place
+    echo "Original: $value => Rounded: $rounded<br>";
+}
+?>
+
+Output:
+
+<h2>Rounding Values in PHP</h2><strong>Original Values:</strong> Array
+(
+    [0] => 1.65
+    [1] => 1.65
+    [2] => -1.54
+)
+<br><br><strong>Rounded Values (1 decimal place):</strong><br>Original: 1.65 => Rounded: 1.7<br>Original: 1.65 => Rounded: 1.7<br>Original: -1.54 => Rounded: -1.5<br>
