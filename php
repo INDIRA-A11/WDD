@@ -1026,3 +1026,34 @@ Summary:
 Average Score: 63.2
 Highest Score: 92
 Lowest Score: 30
+
+QUESTION 40
+<?php
+// Input string
+$text = "Hello@# World! 123 *&^%$ PHP_2025";
+
+// Convert the string into an array of characters
+$chars = str_split($text);
+
+// Create a new array to hold only allowed characters
+$filtered = array();
+
+// Loop through each character
+foreach ($chars as $char) {
+    // Check if the character is allowed
+    if (ctype_alnum($char) || $char === " ") {
+        $filtered[] = $char;
+    }
+}
+
+// Convert filtered array back to string
+$cleanText = implode("", $filtered);
+
+// Output result
+echo "Original: $text\n";
+echo "Cleaned: $cleanText\n";
+?>
+
+Output:
+Original: Hello@# World! 123 *&^%$ PHP_2025
+Cleaned: Hello World 123  PHP2025
