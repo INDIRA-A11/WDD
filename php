@@ -2354,3 +2354,55 @@ echo "Sum of even numbers: " . sumEvenNumbers($array);  // Output: 12
 
 Output:
 Sum of even numbers: 12
+
+QUESTION 64
+<?php
+// Historical monthly sales data (example in units or revenue)
+$sales = [1200, 1350, 1420, 1500, 1600, 1720, 1800, 1900, 2050, 2200, 2300, 2450];
+
+// Function to calculate monthly growth rates
+function calculateGrowthRates($sales) {
+    $growthRates = [];
+    for ($i = 1; $i < count($sales); $i++) {
+        $growth = (($sales[$i] - $sales[$i - 1]) / $sales[$i - 1]) * 100; // % growth
+        $growthRates[] = round($growth, 2);
+    }
+    return $growthRates;
+}
+
+// Function to forecast next month's sales based on average growth rate
+function forecastNextMonth($sales) {
+    $growthRates = calculateGrowthRates($sales);
+    $avgGrowthRate = array_sum($growthRates) / count($growthRates); // average growth %
+    $lastMonthSales = end($sales);
+    $forecast = $lastMonthSales * (1 + $avgGrowthRate / 100);
+    return round($forecast, 2);
+}
+
+// Calculate growth rates
+$growthRates = calculateGrowthRates($sales);
+echo "Monthly Growth Rates (%): ";
+print_r($growthRates);
+
+// Forecast next month's sales
+$nextMonthForecast = forecastNextMonth($sales);
+echo "Forecasted sales for next month: " . $nextMonthForecast;
+?>
+
+Output:
+
+Monthly Growth Rates (%): Array
+(
+    [0] => 12.5
+    [1] => 5.19
+    [2] => 5.63
+    [3] => 6.67
+    [4] => 7.5
+    [5] => 4.65
+    [6] => 5.56
+    [7] => 7.89
+    [8] => 7.32
+    [9] => 4.55
+    [10] => 6.52
+)
+Forecasted sales for next month: 2614.77
