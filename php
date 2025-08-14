@@ -2425,3 +2425,96 @@ if (strpos($mainString, $searchString) !== false) {
 
 Output:
 The string 'PHP' was found in the main string.
+
+QUESTION 66
+<?php
+// 1. Sum of even numbers in an array
+function sumEvenNumbers($numbers) {
+    $sum = 0;
+    foreach ($numbers as $num) {
+        if ($num % 2 == 0) {
+            $sum += $num;
+        }
+    }
+    return $sum;
+}
+
+// 2. Sales forecasting system
+function calculateGrowthRates($sales) {
+    $growthRates = [];
+    for ($i = 1; $i < count($sales); $i++) {
+        $growth = (($sales[$i] - $sales[$i - 1]) / $sales[$i - 1]) * 100;
+        $growthRates[] = round($growth, 2);
+    }
+    return $growthRates;
+}
+
+function forecastNextMonth($sales) {
+    $growthRates = calculateGrowthRates($sales);
+    $avgGrowthRate = array_sum($growthRates) / count($growthRates);
+    $lastMonthSales = end($sales);
+    $forecast = $lastMonthSales * (1 + $avgGrowthRate / 100);
+    return round($forecast, 2);
+}
+
+// 3. Check if a string contains another string
+function checkSubstring($mainString, $searchString) {
+    if (strpos($mainString, $searchString) !== false) {
+        return "The string '$searchString' was found in the main string.";
+    } else {
+        return "The string '$searchString' was NOT found in the main string.";
+    }
+}
+
+// 4. Count elements in an array (demonstrating count() and sizeof())
+function countElements($array) {
+    return "Count using count(): " . count($array) . 
+           ", Count using sizeof(): " . sizeof($array);
+}
+
+// ----------------------
+// Example usage:
+
+// Sum of even numbers
+$numbers = [1, 2, 3, 4, 5, 6];
+echo "Sum of even numbers: " . sumEvenNumbers($numbers) . "\n\n";
+
+// Sales forecasting
+$sales = [1200, 1350, 1420, 1500, 1600, 1720, 1800, 1900, 2050, 2200, 2300, 2450];
+echo "Monthly Growth Rates (%): ";
+print_r(calculateGrowthRates($sales));
+echo "Forecasted sales for next month: " . forecastNextMonth($sales) . "\n\n";
+
+// Check substring
+$mainString = "Welcome to the world of PHP programming.";
+$searchString = "PHP";
+echo checkSubstring($mainString, $searchString) . "\n\n";
+
+// Count elements
+$arrayExample = ["apple", "banana", "orange"];
+echo countElements($arrayExample);
+?>
+
+Output:
+
+Sum of even numbers: 12
+
+Monthly Growth Rates (%): Array
+(
+    [0] => 12.5
+    [1] => 5.19
+    [2] => 5.63
+    [3] => 6.67
+    [4] => 7.5
+    [5] => 4.65
+    [6] => 5.56
+    [7] => 7.89
+    [8] => 7.32
+    [9] => 4.55
+    [10] => 6.52
+)
+Forecasted sales for next month: 2614.77
+
+The string 'PHP' was found in the main string.
+
+Count using count(): 3, Count using sizeof(): 3
