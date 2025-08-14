@@ -2111,3 +2111,30 @@ Output:
     [3] => orange
 )
 <br>
+
+QUESTION 58
+<?php
+echo "<h2>Extract Email Addresses Using RegEx in PHP</h2>";
+
+// Sample string containing emails
+$string = "Hello, contact us at info@example.com, support@domain.org, or sales@company.co.uk.";
+
+// Regular expression pattern to match email addresses
+$pattern = "/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}/i";
+
+// Use preg_match_all to find all email addresses
+preg_match_all($pattern, $string, $matches);
+
+// Display results
+if (!empty($matches[0])) {
+    echo "Email addresses found:<br>";
+    foreach ($matches[0] as $email) {
+        echo "- $email<br>";
+    }
+} else {
+    echo "No email addresses found in the string.";
+}
+?>
+
+Output:
+<h2>Extract Email Addresses Using RegEx in PHP</h2>Email addresses found:<br>- info@example.com<br>- support@domain.org<br>- sales@company.co.uk<br>
