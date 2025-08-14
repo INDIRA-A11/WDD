@@ -1057,3 +1057,33 @@ echo "Cleaned: $cleanText\n";
 Output:
 Original: Hello@# World! 123 *&^%$ PHP_2025
 Cleaned: Hello World 123  PHP2025
+
+QUESTION 41
+<?php
+// Sample text containing email addresses
+$text = "Contact us at support@example.com or sales@shop.co.in. 
+You can also write to admin123@domain.org.";
+
+// Regular expression pattern for email addresses
+$pattern = '/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/';
+
+// Use preg_match_all to find all emails
+preg_match_all($pattern, $text, $matches);
+
+// $matches[0] contains the list of found email addresses
+$emails = $matches[0];
+
+// Display extracted emails
+echo "Extracted Email Addresses:\n";
+print_r($emails);
+?>
+
+Output:
+
+Extracted Email Addresses:
+Array
+(
+    [0] => support@example.com
+    [1] => sales@shop.co.in
+    [2] => admin123@domain.org
+)
