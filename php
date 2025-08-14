@@ -2406,3 +2406,22 @@ Monthly Growth Rates (%): Array
     [10] => 6.52
 )
 Forecasted sales for next month: 2614.77
+
+QUESTION 65
+<?php
+// Main string
+$mainString = "Welcome to the world of PHP programming.";
+
+// Substring to search
+$searchString = "PHP";
+
+// Check if the substring exists in the main string
+if (strpos($mainString, $searchString) !== false) {
+    echo "The string '$searchString' was found in the main string.";
+} else {
+    echo "The string '$searchString' was NOT found in the main string.";
+}
+?>
+
+Output:
+The string 'PHP' was found in the main string.
