@@ -2722,6 +2722,5 @@ divide(10,0);
 ?>
 
 Output:
-
 Enter numbers separated by spaces: 
 Error: Command failed: timeout 7 php HelloWorld.php
