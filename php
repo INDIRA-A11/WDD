@@ -935,3 +935,27 @@ Array
 
 The third fruit is: Cherry
 
+QUESTION 38
+<?php
+// Step 1: Create an array
+$fruits = array("Apple", "Banana", "Cherry", "Mango");
+
+// Step 2: Initialize counter
+$i = 0;
+
+// Step 3: Find total number of elements
+$total = count($fruits);
+
+// Step 4: Iterate using while loop
+while ($i < $total) {
+    echo "Fruit at index $i: " . $fruits[$i] . "\n";
+    $i++; // Step 6: Increment counter
+}
+?>
+
+Output:
+
+Fruit at index 0: Apple
+Fruit at index 1: Banana
+Fruit at index 2: Cherry
+Fruit at index 3: Mango
