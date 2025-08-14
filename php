@@ -1373,3 +1373,56 @@ foreach ($x as $value) {
 
 Output:
 1 2 4 5 
+
+QUESTION 48
+<?php
+echo "<h2>📌 Record Number Handling in PHP</h2>";
+
+/* -----------------------------------
+   1. Array Record Numbering
+------------------------------------ */
+$students = array("Alice", "Bob", "Charlie", "David");
+
+echo "<h3>Array Records:</h3>";
+foreach ($students as $index => $name) {
+    // +1 because array index starts at 0
+    echo "Record #" . ($index + 1) . ": $name<br>";
+}
+
+/* -----------------------------------
+   2. Database Record Numbering
+------------------------------------ */
+// Database connection
+$conn = mysqli_connect("localhost", "root", "", "school");
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$sql = "SELECT id, name FROM students";
+$result = mysqli_query($conn, $sql);
+
+echo "<h3>Database Records:</h3>";
+$recordNumber = 1; // Counter for database records
+
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "Record #$recordNumber: ID=" . $row['id'] . ", Name=" . $row['name'] . "<br>";
+        $recordNumber++;
+    }
+} else {
+    echo "No records found in database.";
+}
+
+// Close the database connection
+mysqli_close($conn);
+?>
+
+Output:
+
+<h2>📌 Record Number Handling in PHP</h2><h3>Array Records:</h3>Record #1: Alice<br>Record #2: Bob<br>Record #3: Charlie<br>Record #4: David<br>
+PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /HelloWorld.php:19
+Stack trace:
+#0 {main}
+  thrown in /HelloWorld.php on line 19
