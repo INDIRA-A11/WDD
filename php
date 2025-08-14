@@ -1586,3 +1586,54 @@ Original Array: Array
     [2] => CHERRY
     [3] => MANGO
 )
+
+QUESTION 51
+<?php
+// Original array
+$fruits = ["Apple", "Banana", "Cherry", "Mango"];
+
+echo "<h3>Original Array:</h3>";
+print_r($fruits);
+
+// --------------------
+// 1. array_shift()
+// --------------------
+$removed = array_shift($fruits); // Removes first element
+
+echo "<h3>After array_shift():</h3>";
+echo "Removed Element: $removed<br>";
+print_r($fruits);
+
+// --------------------
+// 2. array_unshift()
+// --------------------
+$newCount = array_unshift($fruits, "Pineapple", "Grapes"); // Adds at the beginning
+
+echo "<h3>After array_unshift():</h3>";
+echo "New Array Length: $newCount<br>";
+print_r($fruits);
+?>
+
+Output:
+
+<h3>Original Array:</h3>Array
+(
+    [0] => Apple
+    [1] => Banana
+    [2] => Cherry
+    [3] => Mango
+)
+<h3>After array_shift():</h3>Removed Element: Apple<br>Array
+(
+    [0] => Banana
+    [1] => Cherry
+    [2] => Mango
+)
+<h3>After array_unshift():</h3>New Array Length: 5<br>Array
+(
+    [0] => Pineapple
+    [1] => Grapes
+    [2] => Banana
+    [3] => Cherry
+    [4] => Mango
+)
