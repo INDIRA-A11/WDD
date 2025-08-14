@@ -1637,3 +1637,69 @@ Output:
     [3] => Cherry
     [4] => Mango
 )
+
+QUESTION 52
+<?php
+echo "<h2>Stack vs Queue in PHP</h2>";
+
+// --------------------
+// STACK Example (LIFO)
+// --------------------
+echo "<h3>STACK (LIFO)</h3>";
+$stack = [];
+
+// Push elements onto the stack
+array_push($stack, "A", "B", "C");
+echo "Stack after pushes: ";
+print_r($stack);
+
+// Pop last element from the stack
+$popped = array_pop($stack);
+echo "<br>Element Popped (LIFO): $popped<br>";
+echo "Stack after pop: ";
+print_r($stack);
+
+echo "<hr>";
+
+// --------------------
+// QUEUE Example (FIFO)
+// --------------------
+echo "<h3>QUEUE (FIFO)</h3>";
+$queue = [];
+
+// Enqueue elements
+array_push($queue, "A", "B", "C");
+echo "Queue after enqueues: ";
+print_r($queue);
+
+// Dequeue first element from the queue
+$dequeued = array_shift($queue);
+echo "<br>Element Dequeued (FIFO): $dequeued<br>";
+echo "Queue after dequeue: ";
+print_r($queue);
+?>
+
+Output:
+
+<h2>Stack vs Queue in PHP</h2><h3>STACK (LIFO)</h3>Stack after pushes: Array
+(
+    [0] => A
+    [1] => B
+    [2] => C
+)
+<br>Element Popped (LIFO): C<br>Stack after pop: Array
+(
+    [0] => A
+    [1] => B
+)
+<hr><h3>QUEUE (FIFO)</h3>Queue after enqueues: Array
+(
+    [0] => A
+    [1] => B
+    [2] => C
+)
+<br>Element Dequeued (FIFO): A<br>Queue after dequeue: Array
+(
+    [0] => B
+    [1] => C
+)
