@@ -959,3 +959,70 @@ Fruit at index 0: Apple
 Fruit at index 1: Banana
 Fruit at index 2: Cherry
 Fruit at index 3: Mango
+
+QUESTION 39
+<?php
+// Step 1: Input student scores
+$students = array(
+    "Alice" => 92,
+    "Bob" => 81,
+    "Charlie" => 68,
+    "David" => 45,
+    "Eva" => 30
+);
+
+// Step 2: Function to determine grade
+function getGrade($score) {
+    if ($score >= 90) {
+        return "A";
+    } elseif ($score >= 75) {
+        return "B";
+    } elseif ($score >= 50) {
+        return "C";
+    } elseif ($score >= 35) {
+        return "D";
+    } else {
+        return "F";
+    }
+}
+
+// Step 3: Calculate grades and store results
+$results = array();
+foreach ($students as $name => $score) {
+    $results[$name] = array(
+        "Score" => $score,
+        "Grade" => getGrade($score)
+    );
+}
+
+// Step 4: Generate summary statistics
+$totalScore = array_sum($students);
+$average = $totalScore / count($students);
+$highest = max($students);
+$lowest = min($students);
+
+// Step 5: Display report
+echo "Student Grade Report:\n";
+foreach ($results as $name => $data) {
+    echo $name . " - Score: " . $data['Score'] . ", Grade: " . $data['Grade'] . "\n";
+}
+
+echo "\nSummary:\n";
+echo "Average Score: " . round($average, 2) . "\n";
+echo "Highest Score: " . $highest . "\n";
+echo "Lowest Score: " . $lowest . "\n";
+?>
+
+Output:
+
+Student Grade Report:
+Alice - Score: 92, Grade: A
+Bob - Score: 81, Grade: B
+Charlie - Score: 68, Grade: C
+David - Score: 45, Grade: D
+Eva - Score: 30, Grade: F
+
+Summary:
+Average Score: 63.2
+Highest Score: 92
+Lowest Score: 30
