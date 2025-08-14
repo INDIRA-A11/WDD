@@ -2172,3 +2172,39 @@ Numbers: Array
     [4] => 50
 )
 <br>Average: 30
+
+QUESTION 60
+<?php
+// Function to search a value in an associative array
+function searchValueInAssocArray($array, $value) {
+    $keys = array_keys($array, $value); // Find all keys with the specified value
+    if (!empty($keys)) {
+        return $keys; // Return array of matching keys
+    } else {
+        return null; // Return null if value not found
+    }
+}
+
+// Example associative array
+$students = [
+    "A101" => "Alice",
+    "A102" => "Bob",
+    "A103" => "Charlie",
+    "A104" => "Alice"
+];
+
+// Search for a value
+$searchValue = "Alice";
+$result = searchValueInAssocArray($students, $searchValue);
+
+// Display results
+if ($result) {
+    echo "Value '$searchValue' found at key(s): ";
+    echo implode(", ", $result);
+} else {
+    echo "Value '$searchValue' not found in the array.";
+}
+?>
+
+Output:
+Value 'Alice' found at key(s): A101, A104
