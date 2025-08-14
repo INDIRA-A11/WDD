@@ -1703,3 +1703,60 @@ Output:
     [0] => B
     [1] => C
 )
+
+QUESTION 53
+<?php
+echo "<h2>Difference between array_pop() and array_shift()</h2>";
+
+// Create a numeric array
+$numbers = [10, 20, 30, 40, 50];
+
+echo "<h3>Original Array:</h3>";
+print_r($numbers);
+
+// --------------------
+// array_pop()
+// --------------------
+$lastElement = array_pop($numbers);
+echo "<h3>After array_pop()</h3>";
+echo "Removed Last Element: $lastElement<br>";
+echo "Array Now: ";
+print_r($numbers);
+
+// Reset the array
+$numbers = [10, 20, 30, 40, 50];
+
+// --------------------
+// array_shift()
+// --------------------
+$firstElement = array_shift($numbers);
+echo "<h3>After array_shift()</h3>";
+echo "Removed First Element: $firstElement<br>";
+echo "Array Now: ";
+print_r($numbers);
+?>
+
+Output:
+
+<h2>Difference between array_pop() and array_shift()</h2><h3>Original Array:</h3>Array
+(
+    [0] => 10
+    [1] => 20
+    [2] => 30
+    [3] => 40
+    [4] => 50
+)
+<h3>After array_pop()</h3>Removed Last Element: 50<br>Array Now: Array
+(
+    [0] => 10
+    [1] => 20
+    [2] => 30
+    [3] => 40
+)
+<h3>After array_shift()</h3>Removed First Element: 10<br>Array Now: Array
+(
+    [0] => 20
+    [1] => 30
+    [2] => 40
+    [3] => 50
+)
