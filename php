@@ -2553,3 +2553,28 @@ to => 1
 learn => 1
 and => 1
 powerful => 1
+
+QUESTION 68
+<?php
+// Function to perform division
+function divide($a, $b) {
+    try {
+        if ($b == 0) {
+            throw new DivisionByZeroError("Cannot divide by zero.");
+        }
+        $result = $a / $b;
+        echo "Result: $result\n";
+    } catch (DivisionByZeroError $e) {
+        echo "Error: " . $e->getMessage() . "\n";
+    }
+}
+
+// Example usage
+divide(10, 2); // Normal division
+divide(10, 0); // Division by zero
+?>
+
+Output:
+
+Result: 5
+Error: Cannot divide by zero.
