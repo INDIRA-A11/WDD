@@ -1272,3 +1272,28 @@ Song 'Shape of You' removed from 'Favorites'.
 
 Playlist: Favorites
 - Blinding Lights by The Weeknd (3:20)
+
+QUESTION 45
+<?php
+// Array of strings to search
+$sentences = array(
+    "PHP is a powerful scripting language.",
+    "Arrays are useful in programming.",
+    "I love learning new coding techniques."
+);
+
+// Word to search for
+$searchWord = "programming";
+
+// Loop through the array and check if the word exists in each string
+foreach ($sentences as $sentence) {
+    if (strpos($sentence, $searchWord) !== false) {
+        echo "Found '$searchWord' in: \"$sentence\"<br>";
+    } else {
+        echo "Not found in: \"$sentence\"<br>";
+    }
+}
+?>
+
+Output:
+Not found in: "PHP is a powerful scripting language."<br>Found 'programming' in: "Arrays are useful in programming."<br>Not found in: "I love learning new coding techniques."<br>
