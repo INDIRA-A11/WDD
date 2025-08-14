@@ -2578,3 +2578,47 @@ Output:
 
 Result: 5
 Error: Cannot divide by zero.
+
+QUESTION 69
+<?php
+// Function to convert array values to upper or lower case
+function changeArrayCase($array, $case = 'lower') {
+    if ($case === 'lower') {
+        return array_map('strtolower', $array); // Convert all values to lower case
+    } elseif ($case === 'upper') {
+        return array_map('strtoupper', $array); // Convert all values to upper case
+    } else {
+        return $array; // Return unchanged if invalid case type
+    }
+}
+
+// Sample array
+$Color = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red');
+
+// Convert to lower case
+$lowerCaseArray = changeArrayCase($Color, 'lower');
+echo "Values are in lower case.\n";
+print_r($lowerCaseArray);
+
+// Convert to upper case
+$upperCaseArray = changeArrayCase($Color, 'upper');
+echo "Values are in upper case.\n";
+print_r($upperCaseArray);
+?>
+
+Output:
+
+Values are in lower case.
+Array
+(
+    [A] => blue
+    [B] => green
+    [c] => red
+)
+Values are in upper case.
+Array
+(
+    [A] => BLUE
+    [B] => GREEN
+    [c] => RED
+)
