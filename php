@@ -1087,3 +1087,9 @@ Array
     [1] => sales@shop.co.in
     [2] => admin123@domain.org
 )
+
+QUESTION 42
+Output:
+
+Maximum mark: 635
+Minimum mark: 111
