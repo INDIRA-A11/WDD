@@ -866,3 +866,16 @@ foreach ($strings as $text) {
 
 Output:
 The string 'PHP is great for web development.' contains 'PHP'.<br>The string 'I love coding in JavaScript.' does not contain 'PHP'.<br>The string 'Python is popular for data science.' does not contain 'PHP'.<br>
+
+QUESTION 36
+<?php
+// Create an array of fruits
+$fruits = array("Apple", "Banana", "Cherry", "Mango", "Orange");
+
+// Display the third element (index 2, because arrays are zero-based)
+echo "The third fruit is: " . $fruits[2];
+?>
+
+Output:
+The third fruit is: Cherry
+
