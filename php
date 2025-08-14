@@ -1275,37 +1275,66 @@ Playlist: Favorites
 
 QUESTION 45
 <?php
-// Array of strings to search
-$sentences = array(
-    "PHP is a powerful scripting language.",
-    "Arrays are useful in programming.",
-    "I love learning new coding techniques."
+// Function to compare two multidimensional arrays
+function array_diff_multidimensional($array1, $array2) {
+    $result = array();
+
+    foreach ($array1 as $key => $value) {
+        if (is_array($value)) {
+            // Recursively compare if value is an array
+            if (!isset($array2[$key]) || !is_array($array2[$key])) {
+                $result[$key] = $value;
+            } else {
+                $diff = array_diff_multidimensional($value, $array2[$key]);
+                if (!empty($diff)) {
+                    $result[$key] = $diff;
+                }
+            }
+        } else {
+            // Compare non-array values
+            if (!isset($array2[$key]) || $array2[$key] !== $value) {
+                $result[$key] = $value;
+            }
+        }
+    }
+
+    return $result;
+}
+
+// Example arrays
+$array1 = array(
+    "fruits" => array("apple", "banana", "cherry"),
+    "vegetables" => array("carrot", "peas"),
+    "dairy" => "milk"
 );
 
-// Word to search for
-$searchWord = "programming";
+$array2 = array(
+    "fruits" => array("apple", "banana", "mango"),
+    "vegetables" => array("carrot"),
+    "dairy" => "milk"
+);
 
-// Loop through the array and check if the word exists in each string
-foreach ($sentences as $sentence) {
-    if (strpos($sentence, $searchWord) !== false) {
-        echo "Found '$searchWord' in: \"$sentence\"<br>";
-    } else {
-        echo "Not found in: \"$sentence\"<br>";
-    }
-}
+// Get the difference
+$difference = array_diff_multidimensional($array1, $array2);
+
+print_r($difference);
 ?>
 
 Output:
-Not found in: "PHP is a powerful scripting language."<br>Found 'programming' in: "Arrays are useful in programming."<br>Not found in: "I love learning new coding techniques."<br>
+
+Array
+(
+    [fruits] => Array
+        (
+            [2] => cherry
+        )
+
+    [vegetables] => Array
+        (
+            [1] => peas
+        )
+
+)
 
 QUESTION 46
-<?php
-// Create an array of fruits
-$fruits = array("Apple", "Banana", "Cherry", "Mango", "Orange");
 
-// Display the third element (arrays are zero-indexed)
-echo "The third fruit is: " . $fruits[2];
-?>
-
-Output:
-The third fruit is: Cherry
