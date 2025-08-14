@@ -1540,3 +1540,49 @@ try {
 
 Output:
 <h1>🏆 Player Performance Evaluation</h1><h2>In-Memory Rankings</h2>Rank #1: Bob | PI: 161.80 | Avg Points: 25.00<br>Rank #2: Alice | PI: 135.50 | Avg Points: 25.00<br>Rank #3: Charlie | PI: 108.40 | Avg Points: 25.00<br><p style='color:red'>Database error: could not find driver</p>
+
+QUESTION 50
+<?php
+// Original array
+$words = array("Apple", "Banana", "Cherry", "Mango");
+
+// Convert all elements to lowercase
+$lowercaseArray = array_map('strtolower', $words);
+
+// Convert all elements to uppercase
+$uppercaseArray = array_map('strtoupper', $words);
+
+// Display results
+echo "Original Array: ";
+print_r($words);
+
+echo "<br>Lowercase Array: ";
+print_r($lowercaseArray);
+
+echo "<br>Uppercase Array: ";
+print_r($uppercaseArray);
+?>
+
+Output:
+
+Original Array: Array
+(
+    [0] => Apple
+    [1] => Banana
+    [2] => Cherry
+    [3] => Mango
+)
+<br>Lowercase Array: Array
+(
+    [0] => apple
+    [1] => banana
+    [2] => cherry
+    [3] => mango
+)
+<br>Uppercase Array: Array
+(
+    [0] => APPLE
+    [1] => BANANA
+    [2] => CHERRY
+    [3] => MANGO
+)
