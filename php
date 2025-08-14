@@ -2334,3 +2334,23 @@ Output:
     [2] => -1.54
 )
 <br><br><strong>Rounded Values (1 decimal place):</strong><br>Original: 1.65 => Rounded: 1.7<br>Original: 1.65 => Rounded: 1.7<br>Original: -1.54 => Rounded: -1.5<br>
+
+QUESTION 63
+<?php
+function sumEvenNumbers($numbers) {
+    $sum = 0;
+    foreach ($numbers as $num) {
+        if ($num % 2 == 0) {  // check if the number is even
+            $sum += $num;     // add it to the sum
+        }
+    }
+    return $sum;
+}
+
+// Example usage
+$array = [1, 2, 3, 4, 5, 6];
+echo "Sum of even numbers: " . sumEvenNumbers($array);  // Output: 12
+?>
+
+Output:
+Sum of even numbers: 12
