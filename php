@@ -1089,7 +1089,53 @@ Array
 )
 
 QUESTION 42
-Output:
+<?php
+// Given arrays
+$marks1 = array(360, 310, 310, 330, 313, 375, 456, 111, 256);
+$marks2 = array(350, 340, 356, 330, 321);
+$marks3 = array(630, 340, 570, 635, 434, 255, 298);
 
+// Merge all arrays into one
+$allMarks = array_merge($marks1, $marks2, $marks3);
+
+// Find maximum and minimum
+$maxMark = max($allMarks);
+$minMark = min($allMarks);
+
+// Display results
+echo "Maximum mark: $maxMark\n";
+echo "Minimum mark: $minMark\n";
+?>
+
+Output:
 Maximum mark: 635
 Minimum mark: 111
+
+QUESTION 43
+<?php
+// Sample passwords to test
+$passwords = array(
+    "Pass@123",     // Valid
+    "pass1234",     // No uppercase, no special char
+    "PASS@123",     // No lowercase
+    "Pass123",      // No special char, length < 8
+    "Valid@Password1" // Valid
+);
+
+$pattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+
+foreach ($passwords as $pwd) {
+    if (preg_match($pattern, $pwd)) {
+        echo "$pwd → Valid\n";
+    } else {
+        echo "$pwd → Invalid\n";
+    }
+}
+?>
+
+Output:
+Pass@123 → Valid
+pass1234 → Invalid
+PASS@123 → Invalid
+Pass123 → Invalid
+Valid@Password1 → Valid
