@@ -1853,3 +1853,194 @@ echo "Reversed String: $reversed";
 
 Output:
 <h2>Reverse a String using Stack Functions in PHP</h2>Original String: HELLO<br>Reversed String: OLLEH
+
+QUESTION 56
+<?php
+echo "<h2>PHP Array Sorting Functions Demo</h2>";
+
+$array = ["Banana", "apple", "Mango", "Cherry", "banana10", "banana2"];
+
+echo "<strong>Original Array:</strong><br>";
+print_r($array);
+echo "<hr>";
+
+// sort() - Ascending, reindexes keys
+$temp = $array;
+sort($temp);
+echo "<strong>sort() - Ascending:</strong><br>";
+print_r($temp);
+echo "<br><br>";
+
+// rsort() - Descending, reindexes keys
+$temp = $array;
+rsort($temp);
+echo "<strong>rsort() - Descending:</strong><br>";
+print_r($temp);
+echo "<br><br>";
+
+// asort() - Ascending by values, preserves keys
+$temp = $array;
+asort($temp);
+echo "<strong>asort() - Ascending (Preserve Keys):</strong><br>";
+print_r($temp);
+echo "<br><br>";
+
+// arsort() - Descending by values, preserves keys
+$temp = $array;
+arsort($temp);
+echo "<strong>arsort() - Descending (Preserve Keys):</strong><br>";
+print_r($temp);
+echo "<br><br>";
+
+// ksort() - Ascending by keys
+$temp = $array;
+$temp = array_combine(range(1, count($array)), $array); // Give numeric keys for demo
+ksort($temp);
+echo "<strong>ksort() - Ascending Keys:</strong><br>";
+print_r($temp);
+echo "<br><br>";
+
+// krsort() - Descending by keys
+$temp = $array;
+$temp = array_combine(range(1, count($array)), $array);
+krsort($temp);
+echo "<strong>krsort() - Descending Keys:</strong><br>";
+print_r($temp);
+echo "<br><br>";
+
+// natsort() - Natural order sort
+$temp = $array;
+natsort($temp);
+echo "<strong>natsort() - Natural Order:</strong><br>";
+print_r($temp);
+echo "<br><br>";
+
+// natcasesort() - Natural order case-insensitive
+$temp = $array;
+natcasesort($temp);
+echo "<strong>natcasesort() - Natural Order (Case Insensitive):</strong><br>";
+print_r($temp);
+echo "<br><br>";
+
+// usort() - Custom sort (string length)
+$temp = $array;
+usort($temp, function($a, $b) {
+    return strlen($a) <=> strlen($b);
+});
+echo "<strong>usort() - Custom Sort by String Length:</strong><br>";
+print_r($temp);
+echo "<br><br>";
+
+// array_multisort() - Sorting multiple arrays
+$names = ["John", "Jane", "Dave"];
+$scores = [90, 80, 95];
+array_multisort($scores, SORT_DESC, $names);
+echo "<strong>array_multisort() - Sort Scores Desc, Names Adjust:</strong><br>";
+print_r($names);
+print_r($scores);
+?>
+
+Output:
+
+<h2>PHP Array Sorting Functions Demo</h2><strong>Original Array:</strong><br>Array
+(
+    [0] => Banana
+    [1] => apple
+    [2] => Mango
+    [3] => Cherry
+    [4] => banana10
+    [5] => banana2
+)
+<hr><strong>sort() - Ascending:</strong><br>Array
+(
+    [0] => Banana
+    [1] => Cherry
+    [2] => Mango
+    [3] => apple
+    [4] => banana10
+    [5] => banana2
+)
+<br><br><strong>rsort() - Descending:</strong><br>Array
+(
+    [0] => banana2
+    [1] => banana10
+    [2] => apple
+    [3] => Mango
+    [4] => Cherry
+    [5] => Banana
+)
+<br><br><strong>asort() - Ascending (Preserve Keys):</strong><br>Array
+(
+    [0] => Banana
+    [3] => Cherry
+    [2] => Mango
+    [1] => apple
+    [4] => banana10
+    [5] => banana2
+)
+<br><br><strong>arsort() - Descending (Preserve Keys):</strong><br>Array
+(
+    [5] => banana2
+    [4] => banana10
+    [1] => apple
+    [2] => Mango
+    [3] => Cherry
+    [0] => Banana
+)
+<br><br><strong>ksort() - Ascending Keys:</strong><br>Array
+(
+    [1] => Banana
+    [2] => apple
+    [3] => Mango
+    [4] => Cherry
+    [5] => banana10
+    [6] => banana2
+)
+<br><br><strong>krsort() - Descending Keys:</strong><br>Array
+(
+    [6] => banana2
+    [5] => banana10
+    [4] => Cherry
+    [3] => Mango
+    [2] => apple
+    [1] => Banana
+)
+<br><br><strong>natsort() - Natural Order:</strong><br>Array
+(
+    [0] => Banana
+    [3] => Cherry
+    [2] => Mango
+    [1] => apple
+    [5] => banana2
+    [4] => banana10
+)
+<br><br><strong>natcasesort() - Natural Order (Case Insensitive):</strong><br>Array
+(
+    [1] => apple
+    [0] => Banana
+    [5] => banana2
+    [4] => banana10
+    [3] => Cherry
+    [2] => Mango
+)
+<br><br><strong>usort() - Custom Sort by String Length:</strong><br>Array
+(
+    [0] => apple
+    [1] => Mango
+    [2] => Banana
+    [3] => Cherry
+    [4] => banana2
+    [5] => banana10
+)
+<br><br><strong>array_multisort() - Sort Scores Desc, Names Adjust:</strong><br>Array
+(
+    [0] => Dave
+    [1] => John
+    [2] => Jane
+)
+Array
+(
+    [0] => 95
+    [1] => 90
+    [2] => 80
+)
