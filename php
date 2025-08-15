@@ -3974,3 +3974,27 @@ echo "You have visited this page " . $_SESSION['pageview'] . " time(s).";
 
 Output:
 <h2>Page View Counter</h2>You have visited this page 1 time(s).
+
+QUESTION 104
+<?php
+$filename = "example.txt"; // Replace with your file name
+$n = 3; // Change this to the line number you want to read (nth line)
+
+// Check if file exists
+if (!file_exists($filename)) {
+    die("File does not exist.");
+}
+
+// Read all lines into an array
+$lines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+// Check if nth line exists
+if (isset($lines[$n - 1])) { // Arrays are 0-indexed
+    echo "Line $n: " . $lines[$n - 1];
+} else {
+    echo "No data";
+}
+?>
+
+Output:
+File does not exist.
