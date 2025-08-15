@@ -2980,3 +2980,23 @@ Output:
 
 <h3>1. Hostname and IP Address Functions</h3>IP of example.com: example.com<br>Hostname for IP 93.184.216.34: 93.184.216.34<br>All IPs of example.com: <br>Current Server Hostname: 3de04d470e50<br><hr><h3>2. DNS Functions</h3>example.com does not have an MX record.<br>DNS Records for example.com:<br><hr><h3>3. Protocol and Service Functions</h3>Protocol number for TCP: 6<br>Protocol name for 6: tcp<br>Port number for HTTP: 80<br>Service name for port 80: http<br><hr><h3>4. Socket and Connection Functions</h3>Connection failed: php_network_getaddresses: getaddrinfo for example.com failed: Temporary failure in name resolution (0)<br>
 PHP Warning:  dns_get_record(): A temporary server error occurred. in /HelloWorld.php on line 19
+
+QUESTION 78
+<?php
+// Step 1: Set a cookie if it doesn't exist
+if (!isset($_COOKIE['username'])) {
+    setcookie("username", "Indira", time() + 3600, "/"); // Expires in 1 hour
+    echo "Cookie 'username' has been set.<br>";
+    echo "Refresh the page to read the cookie.<br>";
+} else {
+    // Step 2: Read the cookie
+    echo "Cookie 'username' value: " . $_COOKIE['username'] . "<br>";
+
+    // Step 3: Delete the cookie
+    setcookie("username", "", time() - 3600, "/");
+    echo "Cookie 'username' has been deleted.<br>";
+}
+?>
+
+Output:
+Cookie 'username' has been set.<br>Refresh the page to read the cookie.<br>
