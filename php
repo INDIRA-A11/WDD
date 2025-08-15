@@ -2724,3 +2724,50 @@ divide(10,0);
 Output:
 Enter numbers separated by spaces: 
 Error: Command failed: timeout 7 php HelloWorld.php
+
+QUESTION 71
+<?php
+// Example file name
+$filename = "example.txt";
+
+// Writing to a file using 'w' mode (creates or overwrites)
+$file = fopen($filename, "w");
+fwrite($file, "This is written in 'w' mode.\n");
+fclose($file);
+
+// Reading from a file using 'r' mode
+$file = fopen($filename, "r");
+echo "Reading with 'r' mode:\n";
+echo fread($file, filesize($filename));
+fclose($file);
+
+// Appending to a file using 'a' mode
+$file = fopen($filename, "a");
+fwrite($file, "This is appended in 'a' mode.\n");
+fclose($file);
+
+// Reading and writing using 'r+' mode
+$file = fopen($filename, "r+");
+fwrite($file, "Updated text at the beginning.\n");
+rewind($file);
+echo "\nReading with 'r+' mode:\n";
+echo fread($file, filesize($filename));
+fclose($file);
+
+// Creating a file only if it does not exist using 'x' mode
+$newFile = "newfile.txt";
+$file = fopen($newFile, "x");
+fwrite($file, "This file is created in 'x' mode.\n");
+fclose($file);
+
+echo "\nAll file handling modes demonstrated successfully!";
+?>
+
+Output:
+
+PHP Warning:  fopen(example.txt): Failed to open stream: Permission denied in /HelloWorld.php on line 6
+PHP Fatal error:  Uncaught TypeError: fwrite(): Argument #1 ($stream) must be of type resource, false given in /HelloWorld.php:7
+Stack trace:
+#0 /HelloWorld.php(7): fwrite()
+#1 {main}
+  thrown in /HelloWorld.php on line 7
