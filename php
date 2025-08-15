@@ -3632,3 +3632,68 @@ Output:
 
 Unable to open file in w mode!
 PHP Warning:  fopen(example.txt): Failed to open stream: Permission denied in /HelloWorld.php on line 9
+
+QUESTION 94
+<?php
+session_start(); // Start or resume session
+
+// Initialize shopping cart if not already
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+
+// Add an item to the cart
+if (isset($_GET['item']) && !empty($_GET['item'])) {
+    $item = htmlspecialchars($_GET['item']); // Prevent XSS
+    $_SESSION['cart'][] = $item;
+    echo "<p>✅ Item '<b>$item</b>' added to your cart.</p>";
+}
+
+// Remove an item from the cart
+if (isset($_GET['remove']) && is_numeric($_GET['remove'])) {
+    $index = $_GET['remove'];
+    if (isset($_SESSION['cart'][$index])) {
+        $removed = $_SESSION['cart'][$index];
+        unset($_SESSION['cart'][$index]);
+        $_SESSION['cart'] = array_values($_SESSION['cart']); // Re-index array
+        echo "<p>❌ Item '<b>$removed</b>' removed from your cart.</p>";
+    }
+}
+
+// Empty the cart
+if (isset($_GET['empty'])) {
+    $_SESSION['cart'] = [];
+    echo "<p>🛒 Your cart is now empty.</p>";
+}
+
+// Display the cart
+echo "<h3>Your Shopping Cart</h3>";
+if (count($_SESSION['cart']) > 0) {
+    echo "<ul>";
+    foreach ($_SESSION['cart'] as $index => $product) {
+        echo "<li>$product 
+              <a href='?remove=$index'>[Remove]</a></li>";
+    }
+    echo "</ul>";
+    echo "<a href='?empty=true'>Empty Cart</a>";
+} else {
+    echo "<p>Your cart is empty.</p>";
+}
+
+// Add item form
+?>
+<hr>
+<form method="get">
+    <label>Enter Item Name:</label>
+    <input type="text" name="item" required>
+    <button type="submit">Add to Cart</button>
+</form>
+
+Output:
+
+<h3>Your Shopping Cart</h3><p>Your cart is empty.</p><hr>
+<form method="get">
+    <label>Enter Item Name:</label>
+    <input type="text" name="item" required>
+    <button type="submit">Add to Cart</button>
+</form>
