@@ -3834,3 +3834,47 @@ if (!isset($_SESSION['admin_username'])) {
 
 Output:
 Program did not output anything!
+
+QUESTION 99
+<?php
+session_start(); // (a) Initiate or resume session
+
+// (b) & (c) & (d) - Visit Counter
+if (!isset($_SESSION['visit_count'])) {
+    $_SESSION['visit_count'] = 1; // First visit
+} else {
+    $_SESSION['visit_count']++; // Increment on each visit
+}
+
+echo "<h2>You have visited this page " . $_SESSION['visit_count'] . " time(s).</h2>";
+
+// (e) - Link back to the page with session ID
+echo "<p><a href='" . $_SERVER['PHP_SELF'] . "?".SID."'>Reload Page with Session ID</a></p>";
+
+// (f) File Upload Restriction
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["fileToUpload"])) {
+    $target_dir = "uploads/"; // Make sure this folder exists and is writable
+    $file_name = basename($_FILES["fileToUpload"]["name"]);
+    $target_file = $target_dir . $file_name;
+
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        echo "<p style='color:red;'>Error: File '$file_name' already exists. Please upload a different file.</p>";
+    } else {
+        // Try to move uploaded file
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "<p style='color:green;'>File '$file_name' uploaded successfully.</p>";
+        } else {
+            echo "<p style='color:red;'>Error uploading file. Please try again.</p>";
+        }
+    }
+}
+?>
+
+<!-- HTML Form for File Upload -->
+<h3>Upload a File</h3>
+<form action="" method="post" enctype="multipart/form-data">
+    Select file to upload:
+    <input type="file" name="fileToUpload" required>
+    <input type="submit" value="Upload File">
+</form>
