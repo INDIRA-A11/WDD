@@ -2799,3 +2799,40 @@ echo "Session destroyed successfully.<br>";
 
 Output:
 <b>Session variables have been set:</b><br>Username: Indira<br>Role: Admin<br><br><b>After session_unset():</b><br>All session variables are now removed (session still active).<br><br><b>After session_destroy():</b><br>Session destroyed successfully.<br>
+
+QUESTION 73
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Check if a file was uploaded without errors
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
+        $fileType = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+
+        // Allow only jpg and png
+        if ($fileType === "jpg" || $fileType === "jpeg" || $fileType === "png") {
+            echo "<p style='color:green;'>File uploaded successfully: " . htmlspecialchars($_FILES['image']['name']) . "</p>";
+        } else {
+            echo "<p style='color:red;'>Error: Only JPG and PNG files are allowed.</p>";
+        }
+    } else {
+        echo "<p style='color:red;'>Error: Please select a file to upload.</p>";
+    }
+}
+?>
+
+<!-- Simple HTML Form -->
+<form method="post" enctype="multipart/form-data">
+    Select a JPG or PNG file:
+    <input type="file" name="image" required>
+    <input type="submit" value="Upload">
+</form>
+
+Output:
+
+<!-- Simple HTML Form -->
+<form method="post" enctype="multipart/form-data">
+    Select a JPG or PNG file:
+    <input type="file" name="image" required>
+    <input type="submit" value="Upload">
+</form>
+
+PHP Warning:  Undefined array key "REQUEST_METHOD" in /HelloWorld.php on line 2
