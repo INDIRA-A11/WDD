@@ -3929,3 +3929,28 @@ if (isset($_COOKIE["user"])) {
 
 Output:
 Cookie is not set yet.
+
+QUESTION 102
+<?php
+// Start the session
+session_start();
+
+// Set session variables
+$_SESSION["username"] = "Indira";
+$_SESSION["role"] = "Admin";
+
+// Display session variables
+echo "Session variables have been set.<br>";
+echo "Username: " . $_SESSION["username"] . "<br>";
+echo "Role: " . $_SESSION["role"] . "<br>";
+
+// Check if a session variable exists
+if (isset($_SESSION["username"])) {
+    echo "Welcome back, " . $_SESSION["username"] . "!";
+} else {
+    echo "No session data found.";
+}
+?>
+
+Output:
+Session variables have been set.<br>Username: Indira<br>Role: Admin<br>Welcome back, Indira!
