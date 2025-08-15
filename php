@@ -3262,3 +3262,54 @@ getFileDetails($filePath);
 
 Output:
 Full Path: /var/www/html/uploads/myfile.txt<br>File Name (with extension): myfile.txt<br>File Name (without extension): myfile<br>File Extension: txt<br>
+
+QUESTION 86
+<?php
+$filename = "sample.txt";
+
+// 1. Create and write to file using fopen & fwrite
+$file = fopen($filename, "w");
+fwrite($file, "Hello, this is a test file.\n");
+fwrite($file, "This is the second line.\n");
+fclose($file);
+echo "File created and written successfully.<br>";
+
+// 2. Read file using fopen & fread
+if (file_exists($filename)) {
+    $file = fopen($filename, "r");
+    $contents = fread($file, filesize($filename));
+    fclose($file);
+    echo "<strong>File Contents:</strong><br><pre>$contents</pre>";
+}
+
+// 3. Append content to file
+$file = fopen($filename, "a");
+fwrite($file, "This line is appended.\n");
+fclose($file);
+echo "Content appended successfully.<br>";
+
+// 4. Read entire file using file_get_contents
+echo "<strong>Updated File:</strong><br>";
+echo nl2br(file_get_contents($filename));
+
+// 5. Copy file
+copy($filename, "sample_copy.txt");
+echo "<br>File copied as sample_copy.txt.<br>";
+
+// 6. Rename file
+rename("sample_copy.txt", "renamed_sample.txt");
+echo "File renamed to renamed_sample.txt.<br>";
+
+// 7. Delete renamed file
+unlink("renamed_sample.txt");
+echo "Renamed file deleted.<br>";
+?>
+
+Output:
+
+PHP Warning:  fopen(sample.txt): Failed to open stream: Permission denied in /HelloWorld.php on line 5
+PHP Fatal error:  Uncaught TypeError: fwrite(): Argument #1 ($stream) must be of type resource, false given in /HelloWorld.php:6
+Stack trace:
+#0 /HelloWorld.php(6): fwrite()
+#1 {main}
+  thrown in /HelloWorld.php on line 6
