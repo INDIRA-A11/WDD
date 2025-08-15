@@ -3954,3 +3954,23 @@ if (isset($_SESSION["username"])) {
 
 Output:
 Session variables have been set.<br>Username: Indira<br>Role: Admin<br>Welcome back, Indira!
+
+QUESTION 103
+<?php
+// Start session to store pageview count
+session_start();
+
+// Check if 'pageview' exists in session
+if (isset($_SESSION['pageview'])) {
+    $_SESSION['pageview'] += 1; // Increment if it exists
+} else {
+    $_SESSION['pageview'] = 1;  // Initialize if not exists
+}
+
+// Display the pageview count
+echo "<h2>Page View Counter</h2>";
+echo "You have visited this page " . $_SESSION['pageview'] . " time(s).";
+?>
+
+Output:
+<h2>Page View Counter</h2>You have visited this page 1 time(s).
