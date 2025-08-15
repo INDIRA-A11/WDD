@@ -2884,3 +2884,29 @@ Stack trace:
 #0 /HelloWorld.php(7): fwrite()
 #1 {main}
   thrown in /HelloWorld.php on line 7
+
+QUESTION 75
+<?php
+function appendLineToFile($filename, $newLine) {
+    // Ensure the line ends with a newline character
+    $newLine = rtrim($newLine) . PHP_EOL;
+
+    // Append the line to the file
+    if (file_put_contents($filename, $newLine, FILE_APPEND) !== false) {
+        echo "Line appended successfully to {$filename}.<br>";
+    } else {
+        echo "Error: Unable to append line to {$filename}.<br>";
+    }
+}
+
+// Example usage
+$filename = "myfile.txt";
+appendLineToFile($filename, "This is the first new line");
+appendLineToFile($filename, "This is another line");
+?>
+
+Output:
+
+Error: Unable to append line to myfile.txt.<br>Error: Unable to append line to myfile.txt.<br>
+PHP Warning:  file_put_contents(myfile.txt): Failed to open stream: Permission denied in /HelloWorld.php on line 7
+PHP Warning:  file_put_contents(myfile.txt): Failed to open stream: Permission denied in /HelloWorld.php on line 7
