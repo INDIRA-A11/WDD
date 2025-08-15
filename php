@@ -2910,3 +2910,31 @@ Output:
 Error: Unable to append line to myfile.txt.<br>Error: Unable to append line to myfile.txt.<br>
 PHP Warning:  file_put_contents(myfile.txt): Failed to open stream: Permission denied in /HelloWorld.php on line 7
 PHP Warning:  file_put_contents(myfile.txt): Failed to open stream: Permission denied in /HelloWorld.php on line 7
+
+QUESTION 76
+<?php
+// Function to calculate days until next birthday
+function daysUntilBirthday($month, $day) {
+    $currentYear = date("Y");
+    $today = new DateTime();
+    $birthday = new DateTime("$currentYear-$month-$day");
+
+    // If birthday already passed this year, use next year
+    if ($birthday < $today) {
+        $birthday->modify('+1 year');
+    }
+
+    $interval = $today->diff($birthday);
+    return $interval->days;
+}
+
+// Example: Birthday on 25th December
+$month = 12;
+$day = 25;
+
+$daysLeft = daysUntilBirthday($month, $day);
+echo "Your birthday is in <b>$daysLeft</b> day(s)!";
+?>
+
+Output:
+Your birthday is in <b>131</b> day(s)!
