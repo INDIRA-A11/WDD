@@ -3697,3 +3697,51 @@ Output:
     <input type="text" name="item" required>
     <button type="submit">Add to Cart</button>
 </form>
+
+QUESTION 96
+<?php
+session_start(); // Start session at the top
+
+// Handle Login (Register Session Variable)
+if (isset($_POST['login'])) {
+    $username = trim($_POST['username']);
+    if (!empty($username)) {
+        $_SESSION['username'] = $username;
+        $message = "Session variable 'username' is set to '$username'.";
+    } else {
+        $message = "Please enter a username.";
+    }
+}
+
+// Handle Logout
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    $message = "Session destroyed. You have been logged out.";
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PHP Session Example</title>
+</head>
+<body>
+    <h2>PHP Session Variable Example</h2>
+    <?php if (isset($message)) echo "<p><strong>$message</strong></p>"; ?>
+
+    <?php if (!isset($_SESSION['username'])): ?>
+        <!-- Login Form -->
+        <form method="post">
+            <label>Enter Username: </label>
+            <input type="text" name="username" required>
+            <button type="submit" name="login">Login</button>
+        </form>
+    <?php else: ?>
+        <!-- Show Session Data -->
+        <p>Hello, <strong><?php echo $_SESSION['username']; ?></strong>! Welcome back.</p>
+        <form method="post">
+            <button type="submit" name="logout">Logout</button>
+        </form>
+    <?php endif; ?>
+</body>
+</html>
