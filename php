@@ -3000,3 +3000,31 @@ if (!isset($_COOKIE['username'])) {
 
 Output:
 Cookie 'username' has been set.<br>Refresh the page to read the cookie.<br>
+
+QUESTION 79
+<?php
+// File names
+$file1 = "file1.txt";
+$file2 = "file2.txt";
+$finalFile = "combined.txt";
+
+// Read contents of first file
+$content1 = file_get_contents($file1);
+
+// Read contents of second file
+$content2 = file_get_contents($file2);
+
+// Combine and append into final file
+if (file_put_contents($finalFile, $content1 . PHP_EOL . $content2, FILE_APPEND) !== false) {
+    echo "Files '$file1' and '$file2' have been appended to '$finalFile' successfully.";
+} else {
+    echo "Error: Could not append files.";
+}
+?>
+
+Output:
+
+Error: Could not append files.
+PHP Warning:  file_get_contents(file1.txt): Failed to open stream: No such file or directory in /HelloWorld.php on line 8
+PHP Warning:  file_get_contents(file2.txt): Failed to open stream: No such file or directory in /HelloWorld.php on line 11
+PHP Warning:  file_put_contents(combined.txt): Failed to open stream: Permission denied in /HelloWorld.php on line 14
