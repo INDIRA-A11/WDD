@@ -3313,3 +3313,66 @@ Stack trace:
 #0 /HelloWorld.php(6): fwrite()
 #1 {main}
   thrown in /HelloWorld.php on line 6
+
+QUESTION 87
+<?php
+session_start();
+
+// Hardcoded admin credentials (for demo only — use DB + password hashing in real apps)
+$admin_user = "admin";
+$admin_pass = "12345";
+
+// Logout process
+if (isset($_GET['action']) && $_GET['action'] === 'logout') {
+    session_unset();
+    session_destroy();
+    header("Location: ?page=login");
+    exit();
+}
+
+// Login process
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    if ($username === $admin_user && $password === $admin_pass) {
+        $_SESSION['admin_logged_in'] = true;
+        $_SESSION['admin_username'] = $username;
+        header("Location: ?page=dashboard");
+        exit();
+    } else {
+        $error = "Invalid username or password!";
+    }
+}
+
+// Determine page
+$page = $_GET['page'] ?? 'login';
+
+// Protected page check
+if ($page === 'dashboard' && (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true)) {
+    header("Location: ?page=login");
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+</head>
+<body>
+<?php if ($page === 'login'): ?>
+    <h2>Admin Login</h2>
+    <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
+    <form method="post">
+        Username: <input type="text" name="username" required><br><br>
+        Password: <input type="password" name="password" required><br><br>
+        <button type="submit" name="login">Login</button>
+    </form>
+
+<?php elseif ($page === 'dashboard'): ?>
+    <h2>Welcome, <?php echo htmlspecialchars($_SESSION['admin_username']); ?>!</h2>
+    <p>You are logged in as Admin.</p>
+    <a href="?action=logout">Logout</a>
+<?php endif; ?>
+</body>
+</html>
