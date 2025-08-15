@@ -3048,3 +3048,69 @@ if (isset($_COOKIE['TestCookie'])) {
 
 Output:
 Test cookie 'TestCookie' has been set.<br>Please refresh the page to see the cookie value.
+
+QUESTION 81
+<?php
+session_start();
+
+// Handle logout
+if (isset($_GET['logout'])) {
+    session_unset();
+    session_destroy();
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+
+// If already logged in, show admin dashboard
+if (isset($_SESSION['admin'])) {
+    ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Admin Dashboard</title>
+    </head>
+    <body>
+        <h2>Welcome, <?php echo $_SESSION['admin']; ?>!</h2>
+        <p>This is the admin dashboard.</p>
+        <a href="?logout=true">Logout</a>
+    </body>
+    </html>
+    <?php
+    exit();
+}
+
+// Handle login form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    // Simple admin credentials (for demo)
+    $adminUser = "admin";
+    $adminPass = "12345";
+
+    if ($username === $adminUser && $password === $adminPass) {
+        $_SESSION['admin'] = $username;
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    } else {
+        $error = "Invalid Username or Password!";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+</head>
+<body>
+    <h2>Admin Login</h2>
+    <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
+    <form method="post" action="">
+        Username: <input type="text" name="username" required><br><br>
+        Password: <input type="password" name="password" required><br><br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
+
