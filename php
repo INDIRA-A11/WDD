@@ -3460,3 +3460,34 @@ if (file_exists($filename)) {
 
 Output:
 File 'example.txt' not found!
+
+QUESTION 91
+<?php
+// Start the session
+session_start();
+
+// Store some data in the session
+$_SESSION['username'] = 'Indira';
+$_SESSION['role'] = 'Admin';
+
+// Display the session ID
+echo "<h3>Session ID:</h3> " . session_id();
+
+// Display where sessions are stored on the server
+echo "<h3>Session Save Path:</h3> " . session_save_path();
+
+// Display all session data
+echo "<h3>Session Data:</h3>";
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
+?>
+
+Output:
+
+<h3>Session ID:</h3> 71h6ce9hm97c5knstpmpj8setu<h3>Session Save Path:</h3> /var/lib/php/sessions<h3>Session Data:</h3><pre>Array
+(
+    [username] => Indira
+    [role] => Admin
+)
+</pre>
