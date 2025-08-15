@@ -3114,3 +3114,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 </html>
 
+QUESTION 82
+<?php
+// 1. Simple cookie (name, value)
+setcookie("user", "Indira");
+
+// 2. Cookie with expiry time (1 hour from now)
+setcookie("theme", "dark", time() + 3600);
+
+// 3. Cookie with expiry time and path
+setcookie("language", "English", time() + 3600, "/");
+
+// 4. Cookie with expiry time, path, and domain
+setcookie("country", "India", time() + 3600, "/", "localhost");
+
+// 5. Cookie with secure and httponly flags
+setcookie("secure_cookie", "This is secure", time() + 3600, "/", "", true, true);
+
+// Display all cookies (will be available on next page load)
+echo "<h2>Cookie Setting Example</h2>";
+echo "<p>Cookies have been sent to the browser. Refresh the page to see stored cookies.</p>";
+
+if (!empty($_COOKIE)) {
+    echo "<h3>Stored Cookies:</h3>";
+    echo "<pre>";
+    print_r($_COOKIE);
+    echo "</pre>";
+} else {
+    echo "<p>No cookies available yet. Please refresh.</p>";
+}
+?>
+
+Output:
+<h2>Cookie Setting Example</h2><p>Cookies have been sent to the browser. Refresh the page to see stored cookies.</p><p>No cookies available yet. Please refresh.</p>
