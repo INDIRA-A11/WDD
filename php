@@ -3913,3 +3913,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["fileToUpload"])) {
     Select file: <input type="file" name="fileToUpload" required>
     <input type="submit" value="Upload File">
 </form>
+
+QUESTION 101
+<?php
+// Step 1: Set the cookie (name: user, value: Indira, expires in 1 hour)
+setcookie("user", "Indira", time() + 3600, "/");
+
+// Step 2: Retrieve the cookie value (only available on next page load)
+if (isset($_COOKIE["user"])) {
+    echo "Cookie value is: " . $_COOKIE["user"];
+} else {
+    echo "Cookie is not set yet.";
+}
+?>
+
+Output:
+Cookie is not set yet.
