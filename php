@@ -3745,3 +3745,66 @@ if (isset($_POST['logout'])) {
     <?php endif; ?>
 </body>
 </html>
+
+QUESTION 97
+<?php
+// Set custom session name and cookie parameters before starting the session
+session_name("MYSESSION");
+session_set_cookie_params(3600, "/", "", false, true);
+
+// Start session
+session_start();
+
+// Display current session ID and name
+echo "<h3>Session Details</h3>";
+echo "Session Name: " . session_name() . "<br>";
+echo "Session ID: " . session_id() . "<br>";
+
+// Store session variables
+$_SESSION['username'] = "JohnDoe";
+$_SESSION['email'] = "john@example.com";
+
+// Display stored variables
+echo "<h3>Stored Session Variables</h3>";
+echo "Username: " . $_SESSION['username'] . "<br>";
+echo "Email: " . $_SESSION['email'] . "<br>";
+
+// Regenerate session ID for security
+session_regenerate_id(true);
+echo "<p>New Session ID after regeneration: " . session_id() . "</p>";
+
+// Display cookie parameters
+echo "<h3>Session Cookie Parameters</h3>";
+print_r(session_get_cookie_params());
+
+// Example of unsetting variables
+if (isset($_GET['unset'])) {
+    session_unset();
+    echo "<p>All session variables have been removed.</p>";
+}
+
+// Example of destroying session
+if (isset($_GET['destroy'])) {
+    session_destroy();
+    echo "<p>Session destroyed. Reload page to start a new session.</p>";
+}
+
+// Links for testing
+echo "<hr>";
+echo '<a href="?unset=1">Unset Session Variables</a><br>';
+echo '<a href="?destroy=1">Destroy Session</a>';
+?>
+
+Output:
+
+<h3>Session Details</h3>Session Name: MYSESSION<br>Session ID: v5uj0pq8q3cobg5sm8mr00g08t<br><h3>Stored Session Variables</h3>Username: JohnDoe<br>Email: john@example.com<br><p>New Session ID after regeneration: v5uj0pq8q3cobg5sm8mr00g08t</p><h3>Session Cookie Parameters</h3>Array
+(
+    [lifetime] => 3600
+    [path] => /
+    [domain] => 
+    [secure] => 
+    [httponly] => 1
+    [samesite] => 
+)
+<hr><a href="?unset=1">Unset Session Variables</a><br><a href="?destroy=1">Destroy Session</a>
+PHP Warning:  session_regenerate_id(): Session ID cannot be regenerated after headers have already been sent in /HelloWorld.php on line 24
