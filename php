@@ -3376,3 +3376,33 @@ if ($page === 'dashboard' && (!isset($_SESSION['admin_logged_in']) || $_SESSION[
 <?php endif; ?>
 </body>
 </html>
+
+QUESTION 88
+<?php
+// Set your birthday (format: month/day)
+$birthday = "11-25"; // Example: 25th November
+
+// Current year
+$currentYear = date("Y");
+
+// Create DateTime objects for current date and birthday
+$today = new DateTime();
+$birthdayDate = new DateTime($currentYear . "-" . $birthday);
+
+// If birthday has already passed this year, set it for next year
+if ($today > $birthdayDate) {
+    $birthdayDate->modify('+1 year');
+}
+
+// Calculate the difference
+$interval = $today->diff($birthdayDate);
+$daysLeft = $interval->days;
+
+// Display the countdown
+echo "Today is: " . $today->format("Y-m-d") . "<br>";
+echo "Your birthday is on: " . $birthdayDate->format("Y-m-d") . "<br>";
+echo "🎉 Days until your birthday: <b>$daysLeft</b> days!";
+?>
+
+Output:
+Today is: 2025-08-15<br>Your birthday is on: 2025-11-25<br>🎉 Days until your birthday: <b>101</b> days!
