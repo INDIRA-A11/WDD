@@ -3147,3 +3147,36 @@ if (!empty($_COOKIE)) {
 
 Output:
 <h2>Cookie Setting Example</h2><p>Cookies have been sent to the browser. Refresh the page to see stored cookies.</p><p>No cookies available yet. Please refresh.</p>
+
+QUESTION 83
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = trim($_POST['email'] ?? '');
+
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        // Extract domain name
+        $parts = explode("@", $email);
+        $domain = $parts[1];
+        $message = "<p style='color:green;'>✅ Valid email address!</p>";
+        $message .= "<p><strong>Domain:</strong> $domain</p>";
+    } else {
+        $message = "<p style='color:red;'>❌ Invalid email address!</p>";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Validation</title>
+</head>
+<body>
+    <h2>Email Address Validator</h2>
+    <form method="post" action="">
+        Enter Email: <input type="text" name="email" required>
+        <input type="submit" value="Validate">
+    </form>
+    <hr>
+    <?php if (!empty($message)) echo $message; ?>
+</body>
+</html>
