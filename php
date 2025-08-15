@@ -2771,3 +2771,31 @@ Stack trace:
 #0 /HelloWorld.php(7): fwrite()
 #1 {main}
   thrown in /HelloWorld.php on line 7
+
+QUESTION 72
+<?php
+// Start the session
+session_start();
+
+// (i) Equivalent to session_register() - Assign values to session variables
+$_SESSION['username'] = "Indira";
+$_SESSION['role'] = "Admin";
+echo "<b>Session variables have been set:</b><br>";
+echo "Username: " . $_SESSION['username'] . "<br>";
+echo "Role: " . $_SESSION['role'] . "<br><br>";
+
+// (ii) session_unset() - Removes all session variables but keeps the session alive
+session_unset();
+echo "<b>After session_unset():</b><br>";
+if (empty($_SESSION)) {
+    echo "All session variables are now removed (session still active).<br><br>";
+}
+
+// (iii) session_destroy() - Completely ends the session
+session_destroy();
+echo "<b>After session_destroy():</b><br>";
+echo "Session destroyed successfully.<br>";
+?>
+
+Output:
+<b>Session variables have been set:</b><br>Username: Indira<br>Role: Admin<br><br><b>After session_unset():</b><br>All session variables are now removed (session still active).<br><br><b>After session_destroy():</b><br>Session destroyed successfully.<br>
