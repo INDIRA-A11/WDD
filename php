@@ -3234,3 +3234,31 @@ Output:
 <!-- Links to test removal and destruction -->
 <a href="?remove=1">Remove 'role' from session</a> | 
 <a href="?destroy=1">Destroy Session</a>
+
+QUESTION 85
+<?php
+// Function to extract file information from a given path
+function getFileDetails($path) {
+    // Get file name with extension
+    $filename = basename($path);
+
+    // Get file name without extension
+    $nameWithoutExt = pathinfo($path, PATHINFO_FILENAME);
+
+    // Get file extension
+    $extension = pathinfo($path, PATHINFO_EXTENSION);
+
+    // Display results
+    echo "Full Path: $path<br>";
+    echo "File Name (with extension): $filename<br>";
+    echo "File Name (without extension): $nameWithoutExt<br>";
+    echo "File Extension: $extension<br>";
+}
+
+// Example usage
+$filePath = "/var/www/html/uploads/myfile.txt";
+getFileDetails($filePath);
+?>
+
+Output:
+Full Path: /var/www/html/uploads/myfile.txt<br>File Name (with extension): myfile.txt<br>File Name (without extension): myfile<br>File Extension: txt<br>
