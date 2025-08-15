@@ -3180,3 +3180,57 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <?php if (!empty($message)) echo $message; ?>
 </body>
 </html>
+
+QUESTION 84
+<?php
+// Start the session
+session_start();
+
+// Step 1: Set session values
+if (!isset($_SESSION['username'])) {
+    $_SESSION['username'] = "Indira";
+    $_SESSION['role'] = "Admin";
+    echo "<p>✅ Session variables have been set.</p>";
+}
+
+// Step 2: Display session values
+echo "<h3>Session Data:</h3>";
+if (!empty($_SESSION)) {
+    echo "<pre>";
+    print_r($_SESSION);
+    echo "</pre>";
+} else {
+    echo "<p>No session data found.</p>";
+}
+
+// Step 3: Remove a specific session variable
+if (isset($_GET['remove'])) {
+    unset($_SESSION['role']); // Removes 'role' only
+    echo "<p>⚠️ 'role' session variable removed.</p>";
+}
+
+// Step 4: Destroy the session completely
+if (isset($_GET['destroy'])) {
+    session_unset();     // Remove all session variables
+    session_destroy();   // Destroy the session
+    echo "<p>❌ All session data has been cleared and session destroyed.</p>";
+}
+?>
+
+<hr>
+<!-- Links to test removal and destruction -->
+<a href="?remove=1">Remove 'role' from session</a> | 
+<a href="?destroy=1">Destroy Session</a>
+
+Output:
+
+<p>✅ Session variables have been set.</p><h3>Session Data:</h3><pre>Array
+(
+    [username] => Indira
+    [role] => Admin
+)
+</pre>
+<hr>
+<!-- Links to test removal and destruction -->
+<a href="?remove=1">Remove 'role' from session</a> | 
+<a href="?destroy=1">Destroy Session</a>
