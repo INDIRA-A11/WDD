@@ -3998,3 +3998,32 @@ if (isset($lines[$n - 1])) { // Arrays are 0-indexed
 
 Output:
 File does not exist.
+
+QUESTION 105
+<?php
+function getStartAndEndDateOfWeek($weekNumber, $year) {
+    // Ensure week number and year are integers
+    $weekNumber = intval($weekNumber);
+    $year = intval($year);
+
+    // Get timestamp for the first day of the given week
+    $dto = new DateTime();
+    $dto->setISODate($year, $weekNumber);
+
+    // Start date (Monday)
+    $startDate = $dto->format('Y-m-d');
+
+    // End date (Sunday)
+    $dto->modify('+6 days');
+    $endDate = $dto->format('Y-m-d');
+
+    return array('start_date' => $startDate, 'end_date' => $endDate);
+}
+
+// Example usage:
+$weekDates = getStartAndEndDateOfWeek(33, 2025);
+echo "Week 33 of 2025 starts on " . $weekDates['start_date'] . " and ends on " . $weekDates['end_date'];
+?>
+
+Output:
+Week 33 of 2025 starts on 2025-08-11 and ends on 2025-08-17
