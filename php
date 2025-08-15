@@ -3808,3 +3808,29 @@ Output:
 )
 <hr><a href="?unset=1">Unset Session Variables</a><br><a href="?destroy=1">Destroy Session</a>
 PHP Warning:  session_regenerate_id(): Session ID cannot be regenerated after headers have already been sent in /HelloWorld.php on line 24
+
+QUESTION 98
+<?php
+session_start();
+
+// Restrict access if not logged in
+if (!isset($_SESSION['admin_username'])) {
+    header("Location: admin_login.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, <?php echo $_SESSION['admin_username']; ?>!</h2>
+    <p>This is the secure Admin Dashboard.</p>
+    <a href="logout.php">Logout</a>
+</body>
+</html>
+
+Output:
+Program did not output anything!
