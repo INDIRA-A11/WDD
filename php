@@ -3538,3 +3538,97 @@ if (file_exists($filename)) {
 
 Output:
 <h2>You have visited this page 1 time(s).</h2>
+
+QUESTION 94
+<?php
+// Combined demonstration of all PHP file handling modes
+
+$filename = "example.txt";
+
+// --------------------
+// 1. "w" mode - Write Only
+// --------------------
+$file = fopen($filename, "w") or die("Unable to open file in w mode!");
+fwrite($file, "This is written in 'w' mode.\n");
+fclose($file);
+
+// --------------------
+// 2. "r" mode - Read Only
+// --------------------
+$file = fopen($filename, "r") or die("Unable to open file in r mode!");
+echo "Reading with 'r' mode:\n";
+echo fread($file, filesize($filename));
+fclose($file);
+
+// --------------------
+// 3. "a" mode - Append Only
+// --------------------
+$file = fopen($filename, "a") or die("Unable to open file in a mode!");
+fwrite($file, "This is appended in 'a' mode.\n");
+fclose($file);
+
+// --------------------
+// 4. "r+" mode - Read & Write
+// --------------------
+$file = fopen($filename, "r+") or die("Unable to open file in r+ mode!");
+fwrite($file, "Updated text at the beginning.\n");
+rewind($file);
+echo "\nReading with 'r+' mode:\n";
+echo fread($file, filesize($filename));
+fclose($file);
+
+// --------------------
+// 5. "w+" mode - Write & Read
+// --------------------
+$file = fopen($filename, "w+") or die("Unable to open file in w+ mode!");
+fwrite($file, "This file is opened in 'w+' mode.\n");
+rewind($file);
+echo "\nReading with 'w+' mode:\n";
+echo fread($file, filesize($filename));
+fclose($file);
+
+// --------------------
+// 6. "a+" mode - Append & Read
+// --------------------
+$file = fopen($filename, "a+") or die("Unable to open file in a+ mode!");
+fwrite($file, "Appended with 'a+' mode.\n");
+rewind($file);
+echo "\nReading with 'a+' mode:\n";
+echo fread($file, filesize($filename));
+fclose($file);
+
+// --------------------
+// 7. "x" mode - Create & Write (fails if exists)
+// --------------------
+$newFile = "newfile.txt";
+if (!file_exists($newFile)) {
+    $file = fopen($newFile, "x") or die("Unable to create file in x mode!");
+    fwrite($file, "This file is created in 'x' mode.\n");
+    fclose($file);
+    echo "\nFile 'newfile.txt' created successfully with 'x' mode.\n";
+} else {
+    echo "\nFile 'newfile.txt' already exists. 'x' mode skipped.\n";
+}
+
+// --------------------
+// 8. "x+" mode - Create & Read/Write
+// --------------------
+$anotherFile = "anotherfile.txt";
+if (!file_exists($anotherFile)) {
+    $file = fopen($anotherFile, "x+") or die("Unable to create file in x+ mode!");
+    fwrite($file, "Created with 'x+' mode.\n");
+    rewind($file);
+    echo "\nReading from 'x+' mode file:\n";
+    echo fread($file, filesize($anotherFile));
+    fclose($file);
+} else {
+    echo "\nFile 'anotherfile.txt' already exists. 'x+' mode skipped.\n";
+}
+
+echo "\n\nAll file handling modes demonstrated successfully!";
+?>
+
+Output:
+
+Unable to open file in w mode!
+PHP Warning:  fopen(example.txt): Failed to open stream: Permission denied in /HelloWorld.php on line 9
