@@ -3511,3 +3511,30 @@ if (isset($_COOKIE['username'])) {
 
 Output:
 <h3>Cookie not found or expired.</h3>
+
+QUESTION 93
+<?php
+// File name
+$filename = "example.txt";
+
+// Check if file exists
+if (file_exists($filename)) {
+    // Open the file in read mode
+    $file = fopen($filename, "r") or die("Unable to open file!");
+
+    // Read the entire file contents
+    $contents = fread($file, filesize($filename));
+
+    // Display the contents
+    echo "<h3>File Contents:</h3>";
+    echo nl2br($contents); // nl2br() converts newlines to <br> for HTML
+
+    // Close the file
+    fclose($file);
+} else {
+    echo "File '$filename' not found!";
+}
+?>
+
+Output:
+<h2>You have visited this page 1 time(s).</h2>
