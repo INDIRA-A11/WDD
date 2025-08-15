@@ -3878,3 +3878,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["fileToUpload"])) {
     <input type="file" name="fileToUpload" required>
     <input type="submit" value="Upload File">
 </form>
+
+QUESTION 100
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["fileToUpload"])) {
+    $target_dir = "uploads/";  // Folder to store files
+    $file_name = basename($_FILES["fileToUpload"]["name"]);
+    $target_file = $target_dir . $file_name;
+
+    // Create folder if it doesn't exist
+    if (!file_exists($target_dir)) {
+        mkdir($target_dir, 0777, true);
+    }
+
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        echo "<p style='color:red;'>Error: The file '$file_name' already exists. Please upload a different file.</p>";
+    } 
+    else {
+        // Move uploaded file to target directory
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "<p style='color:green;'>Success: File '$file_name' uploaded successfully.</p>";
+        } 
+        else {
+            echo "<p style='color:red;'>Error: There was a problem uploading your file.</p>";
+        }
+    }
+}
+?>
+
+<!-- HTML Form -->
+<h2>Upload a File</h2>
+<form action="" method="post" enctype="multipart/form-data">
+    Select file: <input type="file" name="fileToUpload" required>
+    <input type="submit" value="Upload File">
+</form>
