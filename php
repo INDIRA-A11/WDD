@@ -3406,3 +3406,30 @@ echo "🎉 Days until your birthday: <b>$daysLeft</b> days!";
 
 Output:
 Today is: 2025-08-15<br>Your birthday is on: 2025-11-25<br>🎉 Days until your birthday: <b>101</b> days!
+
+QUESTION 89
+<?php
+// File name
+$filename = "example.txt";
+
+// Check if the file exists
+if (file_exists($filename)) {
+    // Open the file in read mode
+    $file = fopen($filename, "r") or die("Unable to open file!");
+
+    echo "<h3>File Contents:</h3>";
+
+    // Read until end of file
+    while (!feof($file)) {
+        echo fgets($file) . "<br>"; // Reads line by line
+    }
+
+    // Close the file
+    fclose($file);
+} else {
+    echo "File '$filename' does not exist.";
+}
+?>
+
+Output:
+File 'example.txt' does not exist.
