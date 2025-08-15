@@ -2938,3 +2938,45 @@ echo "Your birthday is in <b>$daysLeft</b> day(s)!";
 
 Output:
 Your birthday is in <b>131</b> day(s)!
+
+QUESTION 77
+<?php
+echo "<h3>1. Hostname and IP Address Functions</h3>";
+$domain = "example.com";
+$ip = "93.184.216.34";
+
+echo "IP of $domain: " . gethostbyname($domain) . "<br>";
+echo "Hostname for IP $ip: " . gethostbyaddr($ip) . "<br>";
+echo "All IPs of $domain: ";
+print_r(gethostbynamel($domain));
+echo "<br>Current Server Hostname: " . gethostname() . "<br>";
+
+echo "<hr><h3>2. DNS Functions</h3>";
+if (checkdnsrr($domain, "MX")) {
+    echo "$domain has an MX record.<br>";
+} else {
+    echo "$domain does not have an MX record.<br>";
+}
+echo "DNS Records for $domain:<br>";
+print_r(dns_get_record($domain));
+
+echo "<hr><h3>3. Protocol and Service Functions</h3>";
+echo "Protocol number for TCP: " . getprotobyname("tcp") . "<br>";
+echo "Protocol name for 6: " . getprotobynumber(6) . "<br>";
+echo "Port number for HTTP: " . getservbyname("http", "tcp") . "<br>";
+echo "Service name for port 80: " . getservbyport(80, "tcp") . "<br>";
+
+echo "<hr><h3>4. Socket and Connection Functions</h3>";
+$fp = @fsockopen($domain, 80, $errno, $errstr, 5);
+if ($fp) {
+    echo "Connected successfully to $domain on port 80.<br>";
+    fclose($fp);
+} else {
+    echo "Connection failed: $errstr ($errno)<br>";
+}
+?>
+
+Output:
+
+<h3>1. Hostname and IP Address Functions</h3>IP of example.com: example.com<br>Hostname for IP 93.184.216.34: 93.184.216.34<br>All IPs of example.com: <br>Current Server Hostname: 3de04d470e50<br><hr><h3>2. DNS Functions</h3>example.com does not have an MX record.<br>DNS Records for example.com:<br><hr><h3>3. Protocol and Service Functions</h3>Protocol number for TCP: 6<br>Protocol name for 6: tcp<br>Port number for HTTP: 80<br>Service name for port 80: http<br><hr><h3>4. Socket and Connection Functions</h3>Connection failed: php_network_getaddresses: getaddrinfo for example.com failed: Temporary failure in name resolution (0)<br>
+PHP Warning:  dns_get_record(): A temporary server error occurred. in /HelloWorld.php on line 19
