@@ -2836,3 +2836,51 @@ Output:
 </form>
 
 PHP Warning:  Undefined array key "REQUEST_METHOD" in /HelloWorld.php on line 2
+
+QUESTION 74
+<?php
+// ====== WRITING TO A FILE ======
+$filename = "sample.txt";
+
+// 1. Writing using fopen + fwrite
+$file = fopen($filename, "w"); // "w" mode creates/overwrites the file
+fwrite($file, "Hello, this is the first line.\n");
+fwrite($file, "This is the second line.\n");
+fclose($file);
+
+// 2. Appending using file_put_contents
+file_put_contents($filename, "This line is appended at the end.\n", FILE_APPEND);
+
+echo "<b>Data written to file successfully.</b><br><br>";
+
+// ====== READING FROM A FILE ======
+
+// Method 1: Reading the whole file using file_get_contents()
+echo "<b>Reading using file_get_contents():</b><br>";
+$content = file_get_contents($filename);
+echo nl2br($content) . "<br><br>";
+
+// Method 2: Reading line-by-line using fopen + fgets
+echo "<b>Reading line-by-line using fopen + fgets:</b><br>";
+$file = fopen($filename, "r");
+while (!feof($file)) {
+    echo fgets($file) . "<br>";
+}
+fclose($file);
+
+// Method 3: Reading file into an array using file()
+echo "<br><b>Reading into an array using file():</b><br>";
+$lines = file($filename);
+foreach ($lines as $line) {
+    echo htmlspecialchars($line) . "<br>";
+}
+?>
+
+Output:
+
+PHP Warning:  fopen(sample.txt): Failed to open stream: Permission denied in /HelloWorld.php on line 6
+PHP Fatal error:  Uncaught TypeError: fwrite(): Argument #1 ($stream) must be of type resource, false given in /HelloWorld.php:7
+Stack trace:
+#0 /HelloWorld.php(7): fwrite()
+#1 {main}
+  thrown in /HelloWorld.php on line 7
