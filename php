@@ -3491,3 +3491,23 @@ Output:
     [role] => Admin
 )
 </pre>
+
+QUESTION 92
+<?php
+// Step 1: Create/Set Cookie (valid for 1 hour)
+setcookie("username", "Indira", time() + 3600, "/"); // Must be before HTML output
+
+// Step 2: Display Cookie Value (if it exists)
+if (isset($_COOKIE['username'])) {
+    echo "<h3>Cookie Value:</h3> " . $_COOKIE['username'];
+} else {
+    echo "<h3>Cookie not found or expired.</h3>";
+}
+
+// Step 3: Delete Cookie (Uncomment to test deletion)
+// setcookie("username", "", time() - 3600, "/");
+// echo "<br><strong>Cookie Deleted!</strong>";
+?>
+
+Output:
+<h3>Cookie not found or expired.</h3>
