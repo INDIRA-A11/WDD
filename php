@@ -3028,3 +3028,23 @@ Error: Could not append files.
 PHP Warning:  file_get_contents(file1.txt): Failed to open stream: No such file or directory in /HelloWorld.php on line 8
 PHP Warning:  file_get_contents(file2.txt): Failed to open stream: No such file or directory in /HelloWorld.php on line 11
 PHP Warning:  file_put_contents(combined.txt): Failed to open stream: Permission denied in /HelloWorld.php on line 14
+
+QUESTION 80
+<?php
+// Create a cookie named "TestCookie" with value "HelloWorld"
+// Cookie will expire in 1 hour (3600 seconds) from now
+setcookie("TestCookie", "HelloWorld", time() + 3600, "/");
+
+// Display message
+echo "Test cookie 'TestCookie' has been set.<br>";
+
+// Check if cookie is available (will be available only after page refresh)
+if (isset($_COOKIE['TestCookie'])) {
+    echo "Cookie value: " . $_COOKIE['TestCookie'];
+} else {
+    echo "Please refresh the page to see the cookie value.";
+}
+?>
+
+Output:
+Test cookie 'TestCookie' has been set.<br>Please refresh the page to see the cookie value.
